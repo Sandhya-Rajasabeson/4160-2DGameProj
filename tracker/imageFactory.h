@@ -8,14 +8,15 @@
 class ImageFactory {
 public:
 
-  static ImageFactory* getInstance();
+  //static ImageFactory* getInstance(); //Meyers singleton step. pointer to reference.
+  static ImageFactory& getInstance();
   ~ImageFactory();
 
   Image* getImage(const std::string&);
   std::vector<Image*> getImages(const std::string&);
 
 private:
-  static ImageFactory* instance;
+  //static ImageFactory* instance; //instead of classwide, it's going to be in a function
   const Gamedata& gdata;
 
   std::map<std::string, SDL_Surface*> surfaces;
