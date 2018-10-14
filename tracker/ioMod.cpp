@@ -8,14 +8,14 @@ IoMod& IoMod::getInstance() {
   return instance;
 }
 
-IoMod::~IoMod() { 
+IoMod::~IoMod() {
   TTF_CloseFont(font);
-  TTF_Quit(); 
+  TTF_Quit();
 }
 
-IoMod::IoMod() : 
+IoMod::IoMod() :
   init(TTF_Init()),
-  renderer( RenderContext::getInstance()->getRenderer() ),
+  renderer( RenderContext::getInstance().getRenderer() ),
   font(TTF_OpenFont(Gamedata::getInstance().getXmlStr("font/file").c_str(),
                     Gamedata::getInstance().getXmlInt("font/size"))),
   textColor({0xff, 0, 0, 0})
@@ -49,8 +49,23 @@ SDL_Surface* IoMod::readSurface(const std::string& filename) {
 }
 
 void IoMod::writeText(const std::string& msg, int x, int y) const {
-  SDL_Surface* surface = 
+  SDL_Surface* surface =
     TTF_RenderText_Solid(font, msg.c_str(), textColor);
+
+  SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+
+  int textWidth = surface->w;
+  int textHeight = surface->h;
+  SDL_FreeSurface(surface);
+  SDL_Rect dst = {x, y, textWidth, textHeight};
+
+  SDL_RenderCopy(renderer, texture, NULL, &dst);
+  SDL_DestroyTexture(texture);
+}
+
+void IoMod::writeText(const std::string& msg, int x, int y, SDL_Color col) const {
+  SDL_Surface* surface =
+    TTF_RenderText_Solid(font, msg.c_str(), col);
 
   SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
 

@@ -81,7 +81,7 @@ std::vector<Image*> ImageFactory::getImages(const std::string& name) {
   }
 
   IoMod& iomod = IoMod::getInstance();
-  RenderContext* renderContext  = RenderContext::getInstance();
+  RenderContext& renderContext  = RenderContext::getInstance();
   std::string sheetPath = gdata.getXmlStr(name+"/file");
   SDL_Surface* spriteSurface = iomod.readSurface(sheetPath);
   bool transparency = gdata.getXmlBool(name+"/transparency");
@@ -113,7 +113,7 @@ std::vector<Image*> ImageFactory::getImages(const std::string& name) {
       SDL_SetColorKey(surface, SDL_TRUE, keyColor);
     }
     SDL_Texture* texture =
-      SDL_CreateTextureFromSurface(renderContext->getRenderer(),surface);
+      SDL_CreateTextureFromSurface(renderContext.getRenderer(),surface);
     surfaces.push_back( surface );
     textures.push_back( texture );
     images.push_back( new Image(surface) );

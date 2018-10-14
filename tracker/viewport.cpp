@@ -7,7 +7,7 @@ Viewport& Viewport::getInstance() {
   return viewport;
 }
 
-Viewport::Viewport() : 
+Viewport::Viewport() :
   gdata(Gamedata::getInstance()),
   viewPos(0, 0),
   msgPos(
@@ -15,14 +15,14 @@ Viewport::Viewport() :
   ),
   worldWidth(gdata.getXmlInt("world/width")),
   worldHeight(gdata.getXmlInt("world/height")),
-  viewWidth(gdata.getXmlInt("view/width")), 
+  viewWidth(gdata.getXmlInt("view/width")),
   viewHeight(gdata.getXmlInt("view/height")),
   objWidth(0), objHeight(0),
-  objectToTrack(NULL) 
+  objectToTrack(NULL)
 {}
 
-void Viewport::setObjectToTrack(const Drawable *obj) { 
-  objectToTrack = obj; 
+void Viewport::setObjectToTrack(const Drawable *obj) {
+  objectToTrack = obj;
   objWidth = objectToTrack->getScaledWidth();
   objHeight = objectToTrack->getScaledHeight();
 }

@@ -17,19 +17,19 @@ public:
   bool operator!=(const Vector2f &other) const {
     return (v[0]!=other.v[0] or v[1] != other.v[1]);
   }
-		
+
   Vector2f operator*(float scale) const;
   Vector2f operator/(float scale) const;
 
   Vector2f operator+(const Vector2f &other) const;
   Vector2f operator-(const Vector2f &other) const;
   Vector2f operator-() const;
-		
+
   const Vector2f &operator*=(float scale);
   const Vector2f &operator/=(float scale);
   const Vector2f &operator+=(const Vector2f &other);
   const Vector2f &operator-=(const Vector2f &other);
-		
+
   float magnitude() const;
   float magnitudeSquared() const;
   Vector2f normalize() const;

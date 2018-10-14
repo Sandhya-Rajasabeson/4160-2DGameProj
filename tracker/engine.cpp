@@ -42,7 +42,7 @@ void Engine::draw() const {
   std::stringstream str;
   str << "fps: " << clock.getFps();
   io.writeText(str.str(), 30, 60);
-  io.writeText("Sandhya Rajasabeson", 30, 440);
+  io.writeText("Sandhya Rajasabeson", 30, 440, SDL_Color({255, 204, 255, 255}));
 
   viewport.draw();
   SDL_RenderPresent(renderer);

@@ -95,7 +95,7 @@ float Vector2f::dot(const Vector2f &other) const {
 }
 
 Vector2f Vector2f::cross(const Vector2f &) const {
-	throw std::string("Cross Product not implemented!"); 
+	throw std::string("Cross Product not implemented!");
 }
 
 Vector2f operator*(float scale, const Vector2f &v) {
@@ -106,4 +106,3 @@ std::ostream &operator<<(std::ostream &output, const Vector2f &v) {
 	output << '(' << v[0] << ", " << v[1]  << ')';
 	return output;
 }
-

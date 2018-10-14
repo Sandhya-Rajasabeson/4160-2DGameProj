@@ -8,14 +8,14 @@
 #include <deque>
 #include <expat.h>
 using std::map;
-using std::string; 
+using std::string;
 const int BUFSIZE = 512;
 
 class ParseXML {
 public:
-  ParseXML( const string& fn ) : 
+  ParseXML( const string& fn ) :
     filename(fn),
-    parser(NULL), 
+    parser(NULL),
     tagNames(),
     xmlData()
   { parseXML(); }
