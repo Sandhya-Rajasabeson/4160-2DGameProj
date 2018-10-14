@@ -14,7 +14,7 @@ public:
   void switchSprite();
 
 private:
-  const RenderContext* rc;
+  const RenderContext& rc;
   const IoMod& io;
   Clock& clock;
 
