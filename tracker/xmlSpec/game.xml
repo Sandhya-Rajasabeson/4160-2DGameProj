@@ -55,24 +55,23 @@
   <alpha>0</alpha>
 </font>
 
-<petSpriteR>
+<petSprite>
   <file>assets/petSpriteR.png</file>
   <startLoc x="50" y="140"/>
-  <frames>2</frames>
-  <frameInterval>500</frameInterval>
   <speedX>200</speedX>
   <speedY>200</speedY>
-  <transparency>true</transparency>
-</petSpriteR>
+  <transparency>false</transparency>
+</petSprite>
 
-<petSpriteL>
-  <file>assets/petSpriteL.png</file>
-  <startLoc x="50" y="140"/>
-  <frames>2</frames>
-  <frameInterval>500</frameInterval>
-  <speedX>200</speedX>
-  <speedY>200</speedY>
-  <transparency>true</transparency>
-</petSpriteL>
+
+<bikerSprite>
+  <file>assets/bikerSprite.png</file>
+  <startLoc x="50" y="400"/>
+  <frames>5</frames>
+  <frameInterval>100</frameInterval>
+  <speedX>100</speedX>
+  <speedY>0</speedY>
+  <transparency>false</transparency>
+</bikerSprite>
 
 </GameData>

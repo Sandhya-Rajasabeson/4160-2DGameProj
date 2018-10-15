@@ -33,8 +33,9 @@ Engine::Engine() :
   currentSprite(0),
   makeVideo( false )
 {
+  sprites.emplace_back(new MultiSprite("bikerSprite"));
   for(int i = 0; i < 7; i++){
-    sprites.emplace_back(new MultiSprite("petSpriteR"));
+    sprites.emplace_back(new Sprite("petSprite"));
   }
 
   Viewport::getInstance().setObjectToTrack(sprites[0]);
@@ -59,7 +60,7 @@ void Engine::draw() const {
   std::stringstream str;
   str << "fps: " << clock.getFps();
   io.writeText(str.str(), 30, 60);
-  io.writeText("Sandhya Rajasabeson", 30, 440, SDL_Color({255, 204, 255, 255}));
+  io.writeText("Sandhya Rajasabeson", 30, Gamedata::getInstance().getXmlInt("view/height") - Gamedata::getInstance().getXmlInt("city1/factor") - Gamedata::getInstance().getXmlInt("font/size") - 5, SDL_Color({255, 204, 255, 255}));
 
   viewport.draw();
 
