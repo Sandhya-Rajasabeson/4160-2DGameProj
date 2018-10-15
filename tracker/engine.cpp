@@ -21,7 +21,10 @@ Engine::Engine() :
   io( IoMod::getInstance() ),
   clock( Clock::getInstance() ),
   renderer( rc.getRenderer() ),
-  world("back", Gamedata::getInstance().getXmlInt("back/factor") ),
+  sky("sky", Gamedata::getInstance().getXmlInt("sky/factor") ),
+  bridge("bridge", Gamedata::getInstance().getXmlInt("bridge/factor") ),
+  city1("city1", Gamedata::getInstance().getXmlInt("city1/factor") ),
+  city2("city2", Gamedata::getInstance().getXmlInt("city2/factor") ),
   viewport( Viewport::getInstance() ),
   star(new Sprite("YellowStar")),
   spinningStar(new MultiSprite("SpinningStar")),
@@ -34,7 +37,10 @@ Engine::Engine() :
 }
 
 void Engine::draw() const {
-  world.draw();
+  sky.draw();
+  city2.draw();
+  city1.draw();
+  bridge.draw();
 
   star->draw();
   spinningStar->draw();
@@ -49,9 +55,13 @@ void Engine::draw() const {
 }
 
 void Engine::update(Uint32 ticks) {
+  sky.update();
+  city2.update();
+  city1.update();
+  bridge.update();
+
   star->update(ticks);
   spinningStar->update(ticks);
-  world.update();
   viewport.update(); // always update viewport last
 }
 
