@@ -26,7 +26,7 @@ Sprite::Sprite(const std::string& name) :
   Drawable(name,
            Vector2f(Gamedata::getInstance().getXmlInt(name+"/startLoc/x"),
                     Gamedata::getInstance().getXmlInt(name+"/startLoc/y")),
-           Vector2f(
+           makeVelocity(
                     Gamedata::getInstance().getXmlInt(name+"/speedX"),
                     Gamedata::getInstance().getXmlInt(name+"/speedY"))
            ),

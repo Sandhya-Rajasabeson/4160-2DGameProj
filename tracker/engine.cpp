@@ -11,8 +11,11 @@
 #include "frameGenerator.h"
 
 Engine::~Engine() {
-  delete star;
-  delete spinningStar;
+  std::cout << "here" << std::endl;
+
+  for(auto& sp : sprites){
+    delete sp;
+  }
   std::cout << "Terminating program" << std::endl;
 }
 
@@ -26,13 +29,16 @@ Engine::Engine() :
   city1("city1", Gamedata::getInstance().getXmlInt("city1/factor") ),
   city2("city2", Gamedata::getInstance().getXmlInt("city2/factor") ),
   viewport( Viewport::getInstance() ),
-  star(new Sprite("YellowStar")),
-  spinningStar(new MultiSprite("SpinningStar")),
+  sprites(),
   currentSprite(0),
   makeVideo( false )
 {
+  for(int i = 0; i < 7; i++){
+    sprites.emplace_back(new MultiSprite("petSpriteR"));
+  }
 
-  Viewport::getInstance().setObjectToTrack(star);
+  Viewport::getInstance().setObjectToTrack(sprites[0]);
+
   std::cout << "Loading complete" << std::endl;
 }
 
@@ -42,8 +48,13 @@ void Engine::draw() const {
   city1.draw();
   bridge.draw();
 
-  star->draw();
-  spinningStar->draw();
+  //star->draw();
+  //spinningStar->draw();
+
+  for(auto& sp : sprites){
+    sp->draw();
+  }
+
 
   std::stringstream str;
   str << "fps: " << clock.getFps();
@@ -51,29 +62,33 @@ void Engine::draw() const {
   io.writeText("Sandhya Rajasabeson", 30, 440, SDL_Color({255, 204, 255, 255}));
 
   viewport.draw();
+
   SDL_RenderPresent(renderer);
 }
 
 void Engine::update(Uint32 ticks) {
+
   sky.update();
   city2.update();
   city1.update();
   bridge.update();
 
-  star->update(ticks);
-  spinningStar->update(ticks);
+  //star->update(ticks);
+  //spinningStar->update(ticks);
+
+  for(auto& sp : sprites){
+    sp->update(ticks);
+  }
+
+
   viewport.update(); // always update viewport last
 }
 
 void Engine::switchSprite(){
   ++currentSprite;
-  currentSprite = currentSprite % 2;
-  if ( currentSprite ) {
-    Viewport::getInstance().setObjectToTrack(spinningStar);
-  }
-  else {
-    Viewport::getInstance().setObjectToTrack(star);
-  }
+  currentSprite = currentSprite % sprites.size();
+  Viewport::getInstance().setObjectToTrack(sprites[currentSprite]);
+
 }
 
 void Engine::play() {
@@ -116,7 +131,9 @@ void Engine::play() {
     ticks = clock.getElapsedTicks();
     if ( ticks > 0 ) {
       clock.incrFrame();
+
       draw();
+
       update(ticks);
       if ( makeVideo ) {
         frameGen.makeFrame();

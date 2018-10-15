@@ -27,8 +27,9 @@ private:
 
   Viewport& viewport;
 
-  Drawable* star;
-  Drawable* spinningStar;
+  //Drawable* star;
+  //Drawable* spinningStar;
+  std::vector<Drawable*> sprites;
   int currentSprite;
 
   bool makeVideo;

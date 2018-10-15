@@ -55,22 +55,24 @@
   <alpha>0</alpha>
 </font>
 
-<SpinningStar>
-  <file>assets/stars.png</file>
+<petSpriteR>
+  <file>assets/petSpriteR.png</file>
   <startLoc x="50" y="140"/>
-  <frames>4</frames>
-  <frameInterval>50</frameInterval>
+  <frames>2</frames>
+  <frameInterval>500</frameInterval>
   <speedX>200</speedX>
   <speedY>200</speedY>
   <transparency>true</transparency>
-</SpinningStar>
+</petSpriteR>
 
-<YellowStar>
-  <file>assets/yellowstar32.png</file>
-  <startLoc x="227" y="240"/>
-  <speedX>300</speedX>
-  <speedY>300</speedY>
-  <transparency>false</transparency>
-</YellowStar>
+<petSpriteL>
+  <file>assets/petSpriteL.png</file>
+  <startLoc x="50" y="140"/>
+  <frames>2</frames>
+  <frameInterval>500</frameInterval>
+  <speedX>200</speedX>
+  <speedY>200</speedY>
+  <transparency>true</transparency>
+</petSpriteL>
 
 </GameData>
