@@ -1,8 +1,10 @@
 #include "twoWayMultisprite.h"
+#include "gameData.h"
+#include "imageFactory.h"
 
 TwoWayMultiSprite::TwoWayMultiSprite( const std::string& name) :
   MultiSprite(name),
-  leftImages( ImageFactory::getInstance().getImages("Left" + name)),
+  leftImages( ImageFactory::getInstance().getImages("left" + name)),
   rightImages(images)
 { }
 
@@ -16,7 +18,7 @@ TwoWayMultiSprite& TwoWayMultiSprite::operator=(const TwoWayMultiSprite& s) {
   Drawable::operator=(s);
   images = (s.images);
   leftImages = (s.leftImages);
-  reftImages = (s.rightIamges);
+  rightImages = (s.rightImages);
   currentFrame = (s.currentFrame);
   numberOfFrames = ( s.numberOfFrames );
   frameInterval = ( s.frameInterval );

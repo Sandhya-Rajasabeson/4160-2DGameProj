@@ -14,7 +14,7 @@ public:
 protected:
   std::vector<Image *> leftImages;
   std::vector<Image *> rightImages;
-  MultiSprite& operator=(const TwoWayMultiSprite&);
+  TwoWayMultiSprite& operator=(const TwoWayMultiSprite&);
 
 };
 #endif
