@@ -5,7 +5,7 @@
 #include <random>
 #include <iomanip>
 #include "sprite.h"
-#include "multisprite.h"
+#include "twoWayMultisprite.h"
 #include "gameData.h"
 #include "engine.h"
 #include "frameGenerator.h"
@@ -16,6 +16,7 @@ Engine::~Engine() {
   for(auto& sp : sprites){
     delete sp;
   }
+  sprites.clear();
   std::cout << "Terminating program" << std::endl;
 }
 
@@ -33,7 +34,7 @@ Engine::Engine() :
   currentSprite(0),
   makeVideo( false )
 {
-  sprites.emplace_back(new MultiSprite("bikerSprite"));
+  sprites.emplace_back(new TwoWayMultiSprite("bikerSprite"));
   for(int i = 0; i < 7; i++){
     sprites.emplace_back(new Sprite("petSprite"));
   }

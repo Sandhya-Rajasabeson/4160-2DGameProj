@@ -14,7 +14,7 @@ MultiSprite::MultiSprite( const std::string& name) :
   Drawable(name,
            Vector2f(Gamedata::getInstance().getXmlInt(name+"/startLoc/x"),
                     Gamedata::getInstance().getXmlInt(name+"/startLoc/y")),
-           makeVelocity(Gamedata::getInstance().getXmlInt(name+"/speedX"),
+           Vector2f(Gamedata::getInstance().getXmlInt(name+"/speedX"),
                     Gamedata::getInstance().getXmlInt(name+"/speedY"))
            ),
   images( ImageFactory::getInstance().getImages(name) ),
@@ -74,13 +74,4 @@ void MultiSprite::update(Uint32 ticks) {
     setVelocityX( -fabs( getVelocityX() ) );
   }
 
-}
-
-Vector2f MultiSprite::makeVelocity(int vx, int vy) const {
-  float newvx = Gamedata::getInstance().getRandFloat(vx-50,vx+50);;
-  float newvy = Gamedata::getInstance().getRandFloat(vy-50,vy+50);;
-  newvx *= [](){ if(rand()%2) return -1; else return 1; }();
-  newvy *= [](){ if(rand()%2) return -1; else return 1; }();
-
-  return Vector2f(newvx, newvy);
 }

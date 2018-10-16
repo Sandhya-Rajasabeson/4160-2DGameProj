@@ -37,7 +37,6 @@ protected:
   int worldHeight;
 
   void advanceFrame(Uint32 ticks);
-  Vector2f makeVelocity(int, int) const;
   MultiSprite& operator=(const MultiSprite&);
 };
 #endif

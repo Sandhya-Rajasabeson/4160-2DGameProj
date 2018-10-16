@@ -74,4 +74,14 @@
   <transparency>false</transparency>
 </bikerSprite>
 
+<leftbikerSprite>
+  <file>assets/leftbikerSprite.png</file>
+  <startLoc x="50" y="400"/>
+  <frames>5</frames>
+  <frameInterval>100</frameInterval>
+  <speedX>100</speedX>
+  <speedY>0</speedY>
+  <transparency>false</transparency>
+</leftbikerSprite>
+
 </GameData>
