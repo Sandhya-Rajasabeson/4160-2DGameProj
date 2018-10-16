@@ -29,6 +29,8 @@ Engine::Engine() :
   bridge("bridge", Gamedata::getInstance().getXmlInt("bridge/factor") ),
   city1("city1", Gamedata::getInstance().getXmlInt("city1/factor") ),
   city2("city2", Gamedata::getInstance().getXmlInt("city2/factor") ),
+  city3("city3", Gamedata::getInstance().getXmlInt("city3/factor") ),
+  city4("city4", Gamedata::getInstance().getXmlInt("city4/factor") ),
   viewport( Viewport::getInstance() ),
   sprites(),
   currentSprite(0),
@@ -46,15 +48,18 @@ Engine::Engine() :
 
 void Engine::draw() const {
   sky.draw();
+  city4.draw();
+  city3.draw();
   city2.draw();
   city1.draw();
+  sprites[0]->draw();
   bridge.draw();
 
   //star->draw();
   //spinningStar->draw();
 
-  for(auto& sp : sprites){
-    sp->draw();
+  for(unsigned int i = 1; i < sprites.size(); i++){
+    sprites[i]->draw();
   }
 
 
@@ -71,6 +76,8 @@ void Engine::draw() const {
 void Engine::update(Uint32 ticks) {
 
   sky.update();
+  city4.update();
+  city3.update();
   city2.update();
   city1.update();
   bridge.update();

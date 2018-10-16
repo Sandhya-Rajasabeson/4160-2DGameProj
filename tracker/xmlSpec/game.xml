@@ -46,6 +46,18 @@
   <transparency>false</transparency>
 </city2>
 
+<city3>
+  <file>assets/city3.png</file>
+  <factor>5</factor>
+  <transparency>false</transparency>
+</city3>
+
+<city4>
+  <file>assets/city4.png</file>
+  <factor>6</factor>
+  <transparency>false</transparency>
+</city4>
+
 <font name="font">
   <file>fonts/arial.ttf</file>
   <size>24</size>
@@ -69,7 +81,7 @@
   <startLoc x="50" y="400"/>
   <frames>5</frames>
   <frameInterval>100</frameInterval>
-  <speedX>100</speedX>
+  <speedX>200</speedX>
   <speedY>0</speedY>
   <transparency>false</transparency>
 </bikerSprite>
@@ -79,7 +91,7 @@
   <startLoc x="50" y="400"/>
   <frames>5</frames>
   <frameInterval>100</frameInterval>
-  <speedX>100</speedX>
+  <speedX>200</speedX>
   <speedY>0</speedY>
   <transparency>false</transparency>
 </leftbikerSprite>

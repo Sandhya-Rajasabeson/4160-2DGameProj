@@ -24,6 +24,8 @@ private:
   World bridge;
   World city1;
   World city2;
+  World city3;
+  World city4;
 
   Viewport& viewport;
 
