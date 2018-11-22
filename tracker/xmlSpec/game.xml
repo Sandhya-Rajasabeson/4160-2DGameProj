@@ -78,7 +78,7 @@
 
 <bikerSprite>
   <file>assets/bikerSprite.png</file>
-  <startLoc x="50" y="400"/>
+  <startLoc x="50" y="480"/>
   <frames>5</frames>
   <frameInterval>100</frameInterval>
   <speedX>200</speedX>

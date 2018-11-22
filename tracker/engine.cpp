@@ -37,9 +37,9 @@ Engine::Engine() :
   makeVideo( false )
 {
   sprites.emplace_back(new TwoWayMultiSprite("bikerSprite"));
-  for(int i = 0; i < 7; i++){
+  /*for(int i = 0; i < 7; i++){
     sprites.emplace_back(new Sprite("petSprite"));
-  }
+  }*/
 
   Viewport::getInstance().setObjectToTrack(sprites[0]);
 
