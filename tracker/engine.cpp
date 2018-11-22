@@ -6,9 +6,14 @@
 #include <iomanip>
 #include "sprite.h"
 #include "twoWayMultisprite.h"
+#include "player.h"
 #include "gameData.h"
 #include "engine.h"
 #include "frameGenerator.h"
+
+/* in charge of creating the sprites and updating them and allowing for
+  game play. contains the destructor for the sprite calls, play command,
+  and update commands */
 
 Engine::~Engine() {
   std::cout << "here" << std::endl;
@@ -36,10 +41,21 @@ Engine::Engine() :
   currentSprite(0),
   makeVideo( false )
 {
-  sprites.emplace_back(new TwoWayMultiSprite("bikerSprite"));
+  sprites.emplace_back(new Player("bikerSprite"));
+
+  //need to replace with hearts. NEED MORE THINKING HERE
   /*for(int i = 0; i < 7; i++){
     sprites.emplace_back(new Sprite("petSprite"));
-  }*/
+  }
+
+  //why doesn't this wwork? i have a feeling it has to do with world(world&) being private. (bc no reserve) but how to set up reserve with this
+  //also why does moving constructor to publlic break too?
+  background.emplace_back("sky", Gamedata::getInstance().getXmlInt("sky/factor")); //0
+  background.emplace_back("city1", Gamedata::getInstance().getXmlInt("city1/factor"));
+  background.emplace_back("city2", Gamedata::getInstance().getXmlInt("city2/factor"));
+  background.emplace_back("city3", Gamedata::getInstance().getXmlInt("city3/factor"));
+  background.emplace_back("city4", Gamedata::getInstance().getXmlInt("city4/factor"));
+  background.emplace_back("bridge", Gamedata::getInstance().getXmlInt("bridge/factor")); //5 */
 
   Viewport::getInstance().setObjectToTrack(sprites[0]);
 
@@ -55,12 +71,9 @@ void Engine::draw() const {
   sprites[0]->draw();
   bridge.draw();
 
-  //star->draw();
-  //spinningStar->draw();
-
-  for(unsigned int i = 1; i < sprites.size(); i++){
+  /*for(unsigned int i = 1; i < sprites.size(); i++){
     sprites[i]->draw();
-  }
+  }*/ //old sprites
 
 
   std::stringstream str;
@@ -81,9 +94,6 @@ void Engine::update(Uint32 ticks) {
   city2.update();
   city1.update();
   bridge.update();
-
-  //star->update(ticks);
-  //spinningStar->update(ticks);
 
   for(auto& sp : sprites){
     sp->update(ticks);
@@ -140,6 +150,15 @@ void Engine::play() {
     ticks = clock.getElapsedTicks();
     if ( ticks > 0 ) {
       clock.incrFrame();
+
+      if(keystate[SDL_SCANCODE_A]) {
+        static_cast<Player*>(sprites[0])->left();
+      }
+
+      if(keystate[SDL_SCANCODE_D]) {
+        static_cast<Player*>(sprites[0])->right();
+      }
+
 
       draw();
 

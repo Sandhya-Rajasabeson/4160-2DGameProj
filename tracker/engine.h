@@ -26,12 +26,12 @@ private:
   World city2;
   World city3;
   World city4;
+  //std::vector<World> background;
 
   Viewport& viewport;
 
-  //Drawable* star;
-  //Drawable* spinningStar;
   std::vector<Drawable*> sprites;
+
   int currentSprite;
 
   bool makeVideo;

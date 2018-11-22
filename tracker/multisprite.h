@@ -1,6 +1,5 @@
 #ifndef MULTISPRITE__H
 #define MULTISPRITE__H
-#include <string>
 #include <vector>
 #include <cmath>
 #include "drawable.h"

@@ -1,8 +1,5 @@
 #ifndef TWOWAYMULTISPRITE__H
 #define TWOWAYMULTISPRITE__H
-#include <string>
-#include <vector>
-#include <cmath>
 #include "multisprite.h"
 
 class TwoWayMultiSprite : public MultiSprite {
