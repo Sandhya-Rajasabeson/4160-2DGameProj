@@ -11,6 +11,7 @@ public:
   void right();
   void left();
   void jump();
+  float getAcceleration();
 
   //this is where observers will go
 
@@ -19,7 +20,7 @@ protected:
 
 private:
   Vector2f initialVelocity;
-  Vector2f acceleration;
+  float acceleration;
 
 };
 #endif

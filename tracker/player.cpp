@@ -5,13 +5,13 @@
 Player::Player( const std::string& name) :
   TwoWayMultiSprite(name),
   initialVelocity(getVelocity()),
-  acceleration(-9.8)
+  acceleration(9.8)
 { }
 
 Player::Player(const Player& s) :
   TwoWayMultiSprite(s),
-  initialVelocity(s.getVelocity()),
-  acceleration(s.getAcceleration())
+  initialVelocity(s.initialVelocity),
+  acceleration(s.acceleration)
 { }
 
 Player& Player::operator=(const Player& s) {
@@ -30,7 +30,7 @@ Player& Player::operator=(const Player& s) {
   return *this;
 }
 
-void Player::getAcceleration(){
+float Player::getAcceleration(){
   return acceleration;
 }
 
@@ -49,19 +49,28 @@ void Player::left()  {
 }
 
 void Player::jump(){
-  setVelocityY(-12.0);
+  if(getY() == 480){
+    setVelocityY(-200);
+  }
 }
 
 void Player::update(Uint32 ticks){
   advanceFrame(ticks);
 
-  Vector2f incr = getVelocity() * static_cast<float>(ticks) * 0.001;
-  setPosition(getPosition() + incr);
+  float incr = getVelocityY() * static_cast<float>(ticks) * 0.001;
+  setY(getY() + incr);
 
-  incr = getAcceleration() * static_cast<float>(ticks) * 0.001;
-  setVelocity(getVelocity() + incr);
+  //incr = getAcceleration() * static_cast<float>(ticks) * 0.001;
+  setVelocityY(getVelocityY() + getAcceleration());
 
-  //setVelocityY(getVelocityY() + .5);
+  if(getY() > 480){ // lower than it should be
+    setY(480);
+    setVelocityY(0);
+  }
+
+  incr = getVelocityX() * static_cast<float>(ticks) * 0.001;
+  setX(getX() + incr);
+
 
   if ( getX() < 0) {
     setVelocityX( fabs( getVelocityX() ) );
