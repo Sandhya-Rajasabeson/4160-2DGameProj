@@ -21,17 +21,23 @@ void Hud::draw() const {
       // the default blend mode is SDL_BLENDMODE_NONE!
       SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
       // Set the hud background color:
-      SDL_SetRenderDrawColor( renderer, 255, 255, 255, 255/2 );
+      SDL_SetRenderDrawColor( renderer, 0, 0, 15, 255/2 );
 
       // Draw the  background
       SDL_RenderFillRect( renderer, &hudFrame );
 
       // Set the  color for the hud outline:
-      SDL_SetRenderDrawColor( renderer, 255, 0, 0, 255/2 );
+      SDL_SetRenderDrawColor( renderer, 255, 102, 255, 255 );
       SDL_RenderDrawRect( renderer, &hudFrame );
       std::stringstream strm;
       strm << "fps: " << clock.getFps() << std::ends;
-      io.writeText(strm.str(), hudFrame.x+30, hudFrame.y+60);
+      io.writeText(strm.str(), hudFrame.x+15, hudFrame.y+15);
+
+      io.writeText("A: turn left", hudFrame.x+15, hudFrame.y+45);
+      io.writeText("D: turn right", hudFrame.x+15, hudFrame.y+75);
+      io.writeText("W: jump!", hudFrame.x+15, hudFrame.y+105);
+
+
   }
 }
 
