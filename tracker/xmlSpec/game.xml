@@ -79,7 +79,7 @@
   <frames>33</frames>
   <frameInterval>100</frameInterval>
   <speedX>180</speedX>
-  <speedY>250</speedY>
+  <speedY>180</speedY>
   <transparency>false</transparency>
 </blackHeart>
 

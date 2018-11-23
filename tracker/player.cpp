@@ -64,7 +64,7 @@ void Player::update(Uint32 ticks){
   setY(getY() + incr);
 
   //incr = getAcceleration() * static_cast<float>(ticks) * 0.001;
-  setVelocityY(getVelocityY() + getAcceleration() * 2);
+  setVelocityY(getVelocityY() + getAcceleration());
 
   if(getY() > 480){ // lower than it should be
     setY(480);
