@@ -1,8 +1,8 @@
 #include <vector>
 #include <SDL.h>
-#include "ioMod.h"
 #include "renderContext.h"
-#include "clock.h"
+//#include "clock.h"
+#include "hud.h"
 #include "world.h"
 #include "viewport.h"
 
@@ -19,7 +19,9 @@ private:
   Clock& clock;
 
   SDL_Renderer * const renderer;
-
+  Hud hud;
+  bool hudToggle;
+  
   World sky;
   World bridge;
   World city1;
@@ -28,6 +30,7 @@ private:
   World city4;
   //std::vector<World> background;
   Viewport& viewport;
+
 
   std::vector<Drawable*> sprites;
 
