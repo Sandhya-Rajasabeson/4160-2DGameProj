@@ -75,7 +75,7 @@
 
 <blackHeart>
   <file>assets/blackHeart.png</file>
-  <startLoc x="350" y="140"/>
+  <startLoc x="350" y="400"/>
   <frames>33</frames>
   <frameInterval>100</frameInterval>
   <speedX>180</speedX>

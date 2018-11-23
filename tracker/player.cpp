@@ -5,13 +5,15 @@
 Player::Player( const std::string& name) :
   TwoWayMultiSprite(name),
   initialVelocity(getVelocity()),
-  acceleration(9.8)
+  acceleration(9.8),
+  observingHearts()
 { }
 
 Player::Player(const Player& s) :
   TwoWayMultiSprite(s),
   initialVelocity(s.initialVelocity),
-  acceleration(s.acceleration)
+  acceleration(s.acceleration),
+  observingHearts(s.observingHearts)
 { }
 
 Player& Player::operator=(const Player& s) {
@@ -27,6 +29,7 @@ Player& Player::operator=(const Player& s) {
   worldHeight = ( s.worldHeight );
   initialVelocity = (s.initialVelocity);
   acceleration = (s.acceleration);
+  observingHearts = (s.observingHearts);
   return *this;
 }
 
@@ -36,14 +39,14 @@ float Player::getAcceleration(){
 
 void Player::right() {
   if ( getX() < worldWidth-getScaledWidth()) {
-    setVelocityX(initialVelocity[0]);
+    setVelocityX(-initialVelocity[0]);
     images = rightImages;
   }
 }
 
 void Player::left()  {
   if ( getX() > 0) {
-    setVelocityX(-initialVelocity[0]);
+    setVelocityX(initialVelocity[0]);
     images = leftImages;
   }
 }
@@ -79,5 +82,32 @@ void Player::update(Uint32 ticks){
   if ( getX() > worldWidth-getScaledWidth()) {
     setVelocityX( -fabs( getVelocityX() ) );
     images = leftImages;
+  }
+
+  notifyHearts(); //observer pattern
+}
+
+//observer pattern
+void Player::attach(SmartHeart* h){
+  observingHearts.push_back(h);
+}
+
+void Player::notifyHearts(){
+  std::vector<SmartHeart*>::iterator it = observingHearts.begin();
+  while(it != observingHearts.end()){
+    (*it)->notify(getPosition());
+    it++;
+  }
+}
+
+void Player::detach(SmartHeart* toDetach){
+  std::vector<SmartHeart*>::iterator it = observingHearts.begin();
+  while(it != observingHearts.end()){
+    if(*it == toDetach){
+      it = observingHearts.erase(it);
+    }
+    else{
+      it++;
+    }
   }
 }

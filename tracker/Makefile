@@ -25,6 +25,7 @@ OBJS = \
 	engine.o \
 	hud.o \
 	collisionStrategy.o \
+	smartHeart.o \
 	main.o
 EXEC = run
 

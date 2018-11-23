@@ -1,6 +1,7 @@
 #ifndef PLAYER__H
 #define PLAYER__H
 #include "twoWayMultisprite.h"
+#include "smartHeart.h"
 
 class Player : public TwoWayMultiSprite {
 public:
@@ -14,6 +15,9 @@ public:
   float getAcceleration();
 
   //this is where observers will go
+  void attach(SmartHeart*);
+  void notifyHearts();
+  void detach(SmartHeart*);
 
 protected:
   Player& operator=(const Player&);
@@ -21,6 +25,6 @@ protected:
 private:
   Vector2f initialVelocity;
   float acceleration;
-
+  std::vector<SmartHeart*> observingHearts;
 };
 #endif

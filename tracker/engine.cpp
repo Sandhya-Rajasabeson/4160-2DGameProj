@@ -40,14 +40,13 @@ Engine::Engine() :
   city4("city4", Gamedata::getInstance().getXmlInt("city4/factor") ),
   viewport( Viewport::getInstance() ),
   sprites(),
-  currentSprite(0),
+  cStrategy(new MidPointCollisionStrategy()),
   makeVideo( false )
 {
   sprites.emplace_back(new Player("bikerSprite"));
-
   //need to replace with hearts. NEED MORE THINKING HERE
-  for(int i = 0; i < 7; i++){
-    sprites.emplace_back(new MultiSprite("blackHeart"));
+  for(int i = 0; i < 10; i++){
+    sprites.emplace_back(new SmartHeart("blackHeart", sprites[0]));
   }
 
   /*//why doesn't this wwork? i have a feeling it has to do with world(world&) being private. (bc no reserve) but how to set up reserve with this
@@ -87,7 +86,8 @@ void Engine::draw() const {
 }
 
 void Engine::update(Uint32 ticks) {
-
+  std::cout << "update no segfault" << std::endl;
+  checkForCollisions();
   sky.update();
   city4.update();
   city3.update();
@@ -96,17 +96,26 @@ void Engine::update(Uint32 ticks) {
   bridge.update();
 
   for(auto& sp : sprites){
+
     sp->update(ticks);
   }
 
   viewport.update(); // always update viewport last
+      std::cout << "update no segfault still!" << std::endl;
 }
 
-void Engine::switchSprite(){
-  ++currentSprite;
-  currentSprite = currentSprite % sprites.size();
-  Viewport::getInstance().setObjectToTrack(sprites[currentSprite]);
-
+void Engine::checkForCollisions(){
+  std::vector<Drawable*>::iterator it = sprites.begin();
+  it++; //skip Player
+  while(it != sprites.end()){
+    if(cStrategy->execute(*sprites[0], **it)){
+      Drawable* dHeart = *it; //CHANGE drawable to AI class after executing AI
+      static_cast<Player*>(sprites[0])->detach(static_cast<SmartHeart*>(dHeart));
+      delete dHeart;
+      it = sprites.erase(it); //will point to next after deleting
+    }
+    it++;
+  }
 }
 
 void Engine::play() {
@@ -129,9 +138,6 @@ void Engine::play() {
         if ( keystate[SDL_SCANCODE_P] ) {
           if ( clock.isPaused() ) clock.unpause();
           else clock.pause();
-        }
-        if ( keystate[SDL_SCANCODE_T] ) {
-          switchSprite();
         }
         if (keystate[SDL_SCANCODE_F4] && !makeVideo) {
           std::cout << "Initiating frame capture" << std::endl;
