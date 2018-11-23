@@ -73,13 +73,15 @@
   <alpha>0</alpha>
 </font>
 
-<petSprite>
-  <file>assets/petSpriteR.png</file>
-  <startLoc x="50" y="140"/>
-  <speedX>200</speedX>
-  <speedY>200</speedY>
+<blackHeart>
+  <file>assets/blackHeart.png</file>
+  <startLoc x="350" y="140"/>
+  <frames>33</frames>
+  <frameInterval>100</frameInterval>
+  <speedX>180</speedX>
+  <speedY>250</speedY>
   <transparency>false</transparency>
-</petSprite>
+</blackHeart>
 
 
 <bikerSprite>

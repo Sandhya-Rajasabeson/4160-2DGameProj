@@ -34,6 +34,7 @@ protected:
   float timeSinceLastFrame;
   int worldWidth;
   int worldHeight;
+  Vector2f makeVelocity(int, int) const;
 
   void advanceFrame(Uint32 ticks);
   MultiSprite& operator=(const MultiSprite&);

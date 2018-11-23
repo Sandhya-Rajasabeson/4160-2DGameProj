@@ -46,11 +46,11 @@ Engine::Engine() :
   sprites.emplace_back(new Player("bikerSprite"));
 
   //need to replace with hearts. NEED MORE THINKING HERE
-  /*for(int i = 0; i < 7; i++){
-    sprites.emplace_back(new Sprite("petSprite"));
+  for(int i = 0; i < 7; i++){
+    sprites.emplace_back(new MultiSprite("blackHeart"));
   }
 
-  //why doesn't this wwork? i have a feeling it has to do with world(world&) being private. (bc no reserve) but how to set up reserve with this
+  /*//why doesn't this wwork? i have a feeling it has to do with world(world&) being private. (bc no reserve) but how to set up reserve with this
   //also why does moving constructor to publlic break too?
   background.emplace_back("sky", Gamedata::getInstance().getXmlInt("sky/factor")); //0
   background.emplace_back("city1", Gamedata::getInstance().getXmlInt("city1/factor"));
@@ -74,9 +74,9 @@ void Engine::draw() const {
   sprites[0]->draw();
   bridge.draw();
 
-  /*for(unsigned int i = 1; i < sprites.size(); i++){
+  for(unsigned int i = 1; i < sprites.size(); i++){
     sprites[i]->draw();
-  }*/ //old sprites
+  }
 
   io.writeText("Sandhya Rajasabeson", 30, Gamedata::getInstance().getXmlInt("view/height") - Gamedata::getInstance().getXmlInt("city1/factor") - Gamedata::getInstance().getXmlInt("font/size") - 5, SDL_Color({255, 204, 255, 255}));
 
