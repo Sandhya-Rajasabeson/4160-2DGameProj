@@ -16,7 +16,7 @@ SmartHeart::SmartHeart(const std::string& name, Drawable* player) :
   biker(player),
   bikerPos(player->getPosition()),
   currentMode(NORMAL),
-  safeDistance(200) //find way to calculate, hard coded for now
+  safeDistance(100) //find way to calculate, hard coded for now
 {}
 
 

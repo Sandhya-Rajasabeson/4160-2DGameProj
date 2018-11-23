@@ -46,7 +46,10 @@ Engine::Engine() :
   sprites.emplace_back(new Player("bikerSprite"));
   //need to replace with hearts. NEED MORE THINKING HERE
   for(int i = 0; i < 10; i++){
-    sprites.emplace_back(new SmartHeart("blackHeart", sprites[0]));
+    SmartHeart* temp = new SmartHeart("blackHeart", sprites[0]);
+    sprites.emplace_back(temp);
+    static_cast<Player*>(sprites[0])->attach(temp);
+
   }
 
   /*//why doesn't this wwork? i have a feeling it has to do with world(world&) being private. (bc no reserve) but how to set up reserve with this
@@ -86,7 +89,6 @@ void Engine::draw() const {
 }
 
 void Engine::update(Uint32 ticks) {
-  std::cout << "update no segfault" << std::endl;
   checkForCollisions();
   sky.update();
   city4.update();
@@ -99,14 +101,14 @@ void Engine::update(Uint32 ticks) {
 
     sp->update(ticks);
   }
-
   viewport.update(); // always update viewport last
-      std::cout << "update no segfault still!" << std::endl;
 }
 
 void Engine::checkForCollisions(){
+
   std::vector<Drawable*>::iterator it = sprites.begin();
   it++; //skip Player
+
   while(it != sprites.end()){
     if(cStrategy->execute(*sprites[0], **it)){
       Drawable* dHeart = *it; //CHANGE drawable to AI class after executing AI
@@ -114,7 +116,8 @@ void Engine::checkForCollisions(){
       delete dHeart;
       it = sprites.erase(it); //will point to next after deleting
     }
-    it++;
+    else
+      it++;
   }
 }
 
