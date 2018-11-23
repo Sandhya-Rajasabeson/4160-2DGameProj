@@ -1,9 +1,10 @@
 #include <vector>
 #include <SDL.h>
+#include "ioMod.h"
 #include "renderContext.h"
+#include "clock.h"
 #include "world.h"
 #include "viewport.h"
-#include "hud.h"
 
 class Engine {
 public:
@@ -18,7 +19,6 @@ private:
   Clock& clock;
 
   SDL_Renderer * const renderer;
-  Hud hud;
 
   World sky;
   World bridge;

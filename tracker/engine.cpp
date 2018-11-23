@@ -30,7 +30,6 @@ Engine::Engine() :
   io( IoMod::getInstance() ),
   clock( Clock::getInstance() ),
   renderer( rc.getRenderer() ),
-  hud(renderer),
   sky("sky", Gamedata::getInstance().getXmlInt("sky/factor") ),
   bridge("bridge", Gamedata::getInstance().getXmlInt("bridge/factor") ),
   city1("city1", Gamedata::getInstance().getXmlInt("city1/factor") ),
@@ -70,8 +69,6 @@ void Engine::draw() const {
   city2.draw();
   city1.draw();
 
-  hud.draw();
-
   sprites[0]->draw();
   bridge.draw();
 
@@ -81,6 +78,7 @@ void Engine::draw() const {
 
 
   std::stringstream str;
+  str << "fps: " << clock.getFps();
   io.writeText(str.str(), 30, 60);
   io.writeText("Sandhya Rajasabeson", 30, Gamedata::getInstance().getXmlInt("view/height") - Gamedata::getInstance().getXmlInt("city1/factor") - Gamedata::getInstance().getXmlInt("font/size") - 5, SDL_Color({255, 204, 255, 255}));
 
@@ -165,7 +163,6 @@ void Engine::play() {
       if(keystate[SDL_SCANCODE_W]) {
         static_cast<Player*>(sprites[0])->jump();
       }
-
 
       draw();
 
