@@ -10,7 +10,7 @@
 // that derived classes may or must have.
 class Drawable {
 public:
-  Drawable(const std::string& n, const Vector2f& pos, const Vector2f& vel): 
+  Drawable(const std::string& n, const Vector2f& pos, const Vector2f& vel):
     name(n), position(pos), velocity(vel), scale(1.0) {}
 
   Drawable(const Drawable& s) :
@@ -47,6 +47,9 @@ public:
   void  setVelocityX(float vx) { velocity[0] = vx;   }
   float getVelocityY() const   { return velocity[1]; }
   void  setVelocityY(float vy) { velocity[1] = vy;   }
+
+  virtual const SDL_Surface* getSurface() const = 0;
+
 private:
   std::string name;
   Vector2f position;

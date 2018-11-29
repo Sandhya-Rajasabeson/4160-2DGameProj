@@ -1,6 +1,5 @@
 #ifndef MULTISPRITE__H
 #define MULTISPRITE__H
-#include <string>
 #include <vector>
 #include <cmath>
 #include "drawable.h"
@@ -35,6 +34,7 @@ protected:
   float timeSinceLastFrame;
   int worldWidth;
   int worldHeight;
+  Vector2f makeVelocity(int, int) const;
 
   void advanceFrame(Uint32 ticks);
   MultiSprite& operator=(const MultiSprite&);

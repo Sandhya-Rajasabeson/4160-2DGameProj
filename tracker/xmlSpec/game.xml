@@ -17,6 +17,12 @@
   <loc x="30" y="30"/>
 </view>
 
+<hud>
+  <loc x="10" y="10"/>
+  <width>250</width>
+  <height>150</height>
+</hud>
+
 <world>
   <width>2000</width>
   <height>600</height>
@@ -61,24 +67,26 @@
 <font name="font">
   <file>fonts/arial.ttf</file>
   <size>24</size>
-  <red>255</red>
+  <red>102</red>
   <green>255</green>
-  <blue>0</blue>
+  <blue>255</blue>
   <alpha>0</alpha>
 </font>
 
-<petSprite>
-  <file>assets/petSpriteR.png</file>
-  <startLoc x="50" y="140"/>
-  <speedX>200</speedX>
-  <speedY>200</speedY>
+<blackHeart>
+  <file>assets/blackHeart.png</file>
+  <startLoc x="350" y="400"/>
+  <frames>33</frames>
+  <frameInterval>100</frameInterval>
+  <speedX>180</speedX>
+  <speedY>180</speedY>
   <transparency>false</transparency>
-</petSprite>
+</blackHeart>
 
 
 <bikerSprite>
   <file>assets/bikerSprite.png</file>
-  <startLoc x="50" y="400"/>
+  <startLoc x="50" y="480"/>
   <frames>5</frames>
   <frameInterval>100</frameInterval>
   <speedX>200</speedX>

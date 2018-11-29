@@ -1,17 +1,16 @@
 #include <vector>
 #include <SDL.h>
-#include "ioMod.h"
 #include "renderContext.h"
-#include "clock.h"
+#include "hud.h"
 #include "world.h"
 #include "viewport.h"
+#include "collisionStrategy.h"
 
 class Engine {
 public:
   Engine ();
   ~Engine ();
   void play();
-  void switchSprite();
 
 private:
   const RenderContext& rc;
@@ -19,6 +18,8 @@ private:
   Clock& clock;
 
   SDL_Renderer * const renderer;
+  Hud hud;
+  bool hudToggle;
 
   World sky;
   World bridge;
@@ -26,13 +27,13 @@ private:
   World city2;
   World city3;
   World city4;
-
+  //std::vector<World> background;
   Viewport& viewport;
 
-  //Drawable* star;
-  //Drawable* spinningStar;
-  std::vector<Drawable*> sprites;
-  int currentSprite;
+
+  std::vector<Drawable*> sprites; //0 is player NEED TO SPLIT. NEEDS to be Drawable for collision to work
+
+  CollisionStrategy* cStrategy;
 
   bool makeVideo;
 
