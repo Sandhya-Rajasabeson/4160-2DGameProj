@@ -66,7 +66,7 @@ void Player::update(Uint32 ticks){
   //incr = getAcceleration() * static_cast<float>(ticks) * 0.001;
   setVelocityY(getVelocityY() + getAcceleration());
 
-  if(getY() > 480){ // lower than it should be
+  if(getY() > 480){ // constrain to bridge jumping
     setY(480);
     setVelocityY(0);
   }
