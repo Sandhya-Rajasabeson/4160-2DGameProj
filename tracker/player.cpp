@@ -5,7 +5,7 @@
 Player::Player( const std::string& name) :
   TwoWayMultiSprite(name),
   initialVelocity(getVelocity()),
-  acceleration(9.8),
+  acceleration(12),
   observingHearts()
 { }
 
@@ -53,7 +53,7 @@ void Player::left()  {
 
 void Player::jump(){
   if(getY() == 480){
-    setVelocityY(-250);
+    setVelocityY(-350);
   }
 }
 
