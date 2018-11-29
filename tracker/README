@@ -4,27 +4,23 @@ Course: 4160
 
 Clemson Email Address: srajasa@g.clemson.edu
 
-Project no: 3
+Project no: 4
 
-Project due date: October 16 2018
+Project due date: November23 2018
 
-Project description: (Also, what image did you draw?) Polymorphism assignment to create a basic animation with SDL.
-This will be the basis of our future projects. I drew an image based on an animated pixel art city I like and a
-music video called Easy by Mat Zo ft Porter Robinson.
-
-Where I got my sprites:
-I created them
-
-
-How many backgrounds do I have:
-6 (i might regret this)
-
-What sprite did I create (not Sprite or MultiSprite):
-TwoWayMultiSprite
+Project description: player character is a biker who has to jump over obstacles on the bridge
+(like people, birds. boxes etc), collect "good hearts" which will be rainbow colored, and
+avoid "bad hearts" which are dark colored. there will be floating clouds of spinning hearts
+which will shoot out either colored or dark hearts. the game ends when the player dies.
+I created the player sprite from scratch and I found gifs of the hearts online on this profile
+on giphy (https://giphy.com/simonfalk/) and I converted them into sprite sheets using this online
+gif to sprite sheet maker (https://ezgif.com/gif-to-sprite)
 
 The easiest part of this project:
-creating the sprites
-
+HUD, thank you Dr.Malloy! :'))))'
 
 Problems that I had in completing this project:
-everything else and the internet dying and losing 3 hours of work. :'(
+I was running a fever with a really bad sore throat and cold situation while I was
+coding the hardest part of this project which slowed things down considerably. But the moment
+I took a nap for a few hours I came back and was able to fix my issues in less than an hours.
+Moral of the story is to sleep.

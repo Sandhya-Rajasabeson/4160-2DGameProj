@@ -42,9 +42,6 @@ void SmartHeart::up()    {
 
 void SmartHeart::down()  {
   setVelocityY( fabs(getVelocityY()) );
-  if(getY() > 480){ //lower than bridge
-    setY(480);
-  }
 }
 
 void SmartHeart::notify(Vector2f newPos){
@@ -72,9 +69,14 @@ void SmartHeart::update(Uint32 ticks) {
       if ( x1 < x2 ) left();
       if ( x1 > x2 ) right();
       if ( y1 < y2 ) up();
-      if ( y1 > y2 ) down(); //might be uneccessary
+      //if ( y1 > y2 ) down(); //might be uneccessary
     }
   }
+
+  if(getY() > 460){ //lower than bridge
+    setY(460);
+  }
+
   MultiSprite::update(ticks); //need to call to update normally as well
 }
 
