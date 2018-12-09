@@ -13,6 +13,9 @@ public:
 
   virtual void update(Uint32 ticks);
 
+  void explode();
+
+
 protected:
   SmartHeart& operator=(const SmartHeart&);
 
