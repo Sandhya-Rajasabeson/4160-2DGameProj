@@ -130,7 +130,6 @@ void Player::explode(){
   if(!explosion){
     MultiSprite sprite("explodingHearts");
     explosion = new ExplodingHearts(sprite);
-    std::cout << (getImage()->getHeight())/2 << std::endl;
     explosion->setX(getX()-115); //centering biker sprite and explosion frames
     explosion->setY(getY()-55);
     setY(480);

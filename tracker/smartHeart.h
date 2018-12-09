@@ -2,6 +2,7 @@
 #define SMARTSPRITE__H
 #include <string>
 #include "multisprite.h"
+#include "explodingSprite.h"
 
 class SmartHeart : public MultiSprite {
 public:
@@ -12,12 +13,14 @@ public:
   void notify(Vector2f);
 
   virtual void update(Uint32 ticks);
+  virtual void draw() const;
 
-  void explode();
+  virtual void explode();
 
 
 protected:
   SmartHeart& operator=(const SmartHeart&);
+  ExplodingSprite* explosion;
 
 private:
   enum MODE {NORMAL, EVADE};

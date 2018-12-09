@@ -2,6 +2,7 @@
 #define SPRITE__H
 #include <string>
 #include "drawable.h"
+// #include "explodingSprite.h"
 
 class Sprite : public Drawable {
 public:
@@ -14,6 +15,7 @@ public:
 
   virtual void draw() const;
   virtual void update(Uint32 ticks);
+  // virtual void explode();
 
   virtual const Image* getImage() const { return image; }
   virtual const SDL_Surface* getSurface() const {

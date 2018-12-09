@@ -22,7 +22,7 @@ public:
   void notifyHearts();
   void detach(SmartHeart*);
 
-  void explode();
+  virtual void explode();
 
 
 protected:

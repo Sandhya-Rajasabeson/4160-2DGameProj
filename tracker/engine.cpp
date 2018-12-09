@@ -16,8 +16,6 @@
   and update commands */
 
 Engine::~Engine() {
-  std::cout << "here" << std::endl;
-
   for(auto& sp : sprites){
     delete sp;
   }
@@ -46,7 +44,7 @@ Engine::Engine() :
   sprites.emplace_back(new Player("bikerSprite"));
   //need to replace with hearts. NEED MORE THINKING HERE
   for(int i = 0; i < 10; i++){
-    SmartHeart* temp = new SmartHeart("blackHeart", sprites[0]);
+    SmartHeart* temp = new SmartHeart("pinkHeart", sprites[0]);
     sprites.emplace_back(temp);
     static_cast<Player*>(sprites[0])->attach(temp);
 
@@ -112,6 +110,7 @@ void Engine::checkForCollisions(){
   while(it != sprites.end()){
     if(cStrategy->execute(*sprites[0], **it)){
       Drawable* dHeart = *it; //CHANGE drawable to AI class after executing AI
+      static_cast<SmartHeart*>(dHeart)->explode();
       static_cast<Player*>(sprites[0])->detach(static_cast<SmartHeart*>(dHeart));
       static_cast<Player*>(sprites[0])->explode();
       delete dHeart;
@@ -176,9 +175,11 @@ void Engine::play() {
         static_cast<Player*>(sprites[0])->jump();
       }
 
-      /*if(keystate[SDL_SCANCODE_E]) {
-        static_cast<Player*>(sprites[0])->explode();
-      }*/
+      if(keystate[SDL_SCANCODE_E]) {
+        for(unsigned int i = 1; i < sprites.size(); i++){
+          static_cast<SmartHeart*>(sprites[i])->explode();
+        }
+      }
 
 
       draw();

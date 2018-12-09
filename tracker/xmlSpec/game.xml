@@ -80,6 +80,10 @@
   <frameInterval>100</frameInterval>
   <speedX>180</speedX>
   <speedY>180</speedY>
+  <chunk>
+    <size>16</size>
+    <distance>200</distance>
+  </chunk>
   <transparency>false</transparency>
 </blackHeart>
 
@@ -90,6 +94,10 @@
   <frameInterval>100</frameInterval>
   <speedX>180</speedX>
   <speedY>180</speedY>
+  <chunk>
+    <size>16</size>
+    <distance>200</distance>
+  </chunk>
   <transparency>false</transparency>
 </pinkHeart>
 

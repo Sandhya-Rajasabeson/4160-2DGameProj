@@ -26,7 +26,7 @@ Sprite::Sprite(const std::string& name) :
   Drawable(name,
            Vector2f(Gamedata::getInstance().getXmlInt(name+"/startLoc/x"),
                     Gamedata::getInstance().getXmlInt(name+"/startLoc/y")),
-           makeVelocity(
+           Vector2f(
                     Gamedata::getInstance().getXmlInt(name+"/speedX"),
                     Gamedata::getInstance().getXmlInt(name+"/speedY"))
            ),
@@ -55,20 +55,23 @@ inline namespace{
 }
 
 void Sprite::draw() const {
-  if(getScale() < SCALE_EPSILON) return;
-  image->draw(getX(), getY(), getScale());
+    std::cout << "sprite draw" << std::endl;
+    if(getScale() < SCALE_EPSILON) return;
+    image->draw(getX(), getY(), getScale());
 }
 
 void Sprite::update(Uint32 ticks) {
 
   Vector2f incr = getVelocity() * static_cast<float>(ticks) * 0.001;
   setPosition(getPosition() + incr);
+  srand(time(NULL));
 
   if ( getY() < 0) {
     setVelocityY( std::abs( getVelocityY() ) );
   }
   if ( getY() > worldHeight-getScaledHeight()) {
-    setVelocityY( -std::abs( getVelocityY() ) );
+    setX(rand()%worldWidth);
+    setY(0);
   }
 
   if ( getX() < 0) {

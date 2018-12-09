@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "sprite.h"
-#include "gamedata.h"
+#include "gameData.h"
 
 class Chunk : public Sprite {
 public:

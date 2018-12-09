@@ -28,6 +28,7 @@ OBJS = \
 	smartHeart.o \
 	explodingHearts.o \
 	explodingSprite.o \
+	chunk.o \
 	main.o
 EXEC = run
 
