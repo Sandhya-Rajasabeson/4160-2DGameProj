@@ -26,6 +26,7 @@ OBJS = \
 	hud.o \
 	collisionStrategy.o \
 	smartHeart.o \
+	explodingHearts.o \
 	main.o
 EXEC = run
 

@@ -113,6 +113,7 @@ void Engine::checkForCollisions(){
     if(cStrategy->execute(*sprites[0], **it)){
       Drawable* dHeart = *it; //CHANGE drawable to AI class after executing AI
       static_cast<Player*>(sprites[0])->detach(static_cast<SmartHeart*>(dHeart));
+      static_cast<Player*>(sprites[0])->explode();
       delete dHeart;
       it = sprites.erase(it); //will point to next after deleting
     }
@@ -174,6 +175,10 @@ void Engine::play() {
       if(keystate[SDL_SCANCODE_W]) {
         static_cast<Player*>(sprites[0])->jump();
       }
+
+      /*if(keystate[SDL_SCANCODE_E]) {
+        static_cast<Player*>(sprites[0])->explode();
+      }*/
 
 
       draw();

@@ -83,10 +83,29 @@
   <transparency>false</transparency>
 </blackHeart>
 
+<pinkHeart>
+  <file>assets/pinkHeart.png</file>
+  <startLoc x="350" y="400"/>
+  <frames>33</frames>
+  <frameInterval>100</frameInterval>
+  <speedX>180</speedX>
+  <speedY>180</speedY>
+  <transparency>false</transparency>
+</pinkHeart>
+
+<explodingHearts>
+  <file>assets/explodingHearts.png</file>
+  <startLoc x="0" y="0"/>
+  <frames>40</frames>
+  <frameInterval>100</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>false</transparency>
+</explodingHearts>
 
 <bikerSprite>
   <file>assets/bikerSprite.png</file>
-  <startLoc x="50" y="480"/>
+  <startLoc x="0" y="480"/>
   <frames>5</frames>
   <frameInterval>100</frameInterval>
   <speedX>200</speedX>

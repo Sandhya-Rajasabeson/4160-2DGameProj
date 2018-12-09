@@ -4,13 +4,17 @@
 
 Player::Player( const std::string& name) :
   TwoWayMultiSprite(name),
+  explosion(nullptr),
   initialVelocity(getVelocity()),
   acceleration(12),
   observingHearts()
 { }
 
+Player::~Player() { if (explosion) delete explosion; }
+
 Player::Player(const Player& s) :
   TwoWayMultiSprite(s),
+  explosion(s.explosion),
   initialVelocity(s.initialVelocity),
   acceleration(s.acceleration),
   observingHearts(s.observingHearts)
@@ -18,15 +22,7 @@ Player::Player(const Player& s) :
 
 Player& Player::operator=(const Player& s) {
   Drawable::operator=(s);
-  images = (s.images);
-  leftImages = (s.leftImages);
-  rightImages = (s.rightImages);
-  currentFrame = (s.currentFrame);
-  numberOfFrames = ( s.numberOfFrames );
-  frameInterval = ( s.frameInterval );
-  timeSinceLastFrame = ( s.timeSinceLastFrame );
-  worldWidth = ( s.worldWidth );
-  worldHeight = ( s.worldHeight );
+  explosion = (s.explosion);
   initialVelocity = (s.initialVelocity);
   acceleration = (s.acceleration);
   observingHearts = (s.observingHearts);
@@ -52,12 +48,22 @@ void Player::left()  {
 }
 
 void Player::jump(){
-  if(getY() == 480){
-    setVelocityY(-350);
+  if(!explosion){
+    if(getY() == 480){
+      setVelocityY(-350);
+    }
   }
 }
 
 void Player::update(Uint32 ticks){
+  if(explosion){
+    explosion->update(ticks);
+    if(explosion->reachedEnd()){
+      delete explosion;
+      explosion = NULL;
+    }
+    return;
+  }
   advanceFrame(ticks);
 
   float incr = getVelocityY() * static_cast<float>(ticks) * 0.001;
@@ -110,4 +116,31 @@ void Player::detach(SmartHeart* toDetach){
       it++;
     }
   }
+}
+
+/*Vector2f Player::getExplosionPosition(){
+  float x = ((explosion->getImage()->getWidth())/2.0) + this->getImage()->getWidth();
+  x += (this->getImage()->getWidth())/2.0;
+  float y = ((explosion->getImage()->getHeight())/2.0) - this->getImage()->getHeight();
+  y += (this->getImage()->getHeight())/2.0;
+  return Vector2f(this->getX()-x, this->getY()+y);
+}*/
+
+void Player::explode(){
+  if(!explosion){
+    MultiSprite sprite("explodingHearts");
+    explosion = new ExplodingHearts(sprite);
+    std::cout << (getImage()->getHeight())/2 << std::endl;
+    explosion->setX(getX()-115); //centering biker sprite and explosion frames
+    explosion->setY(getY()-55);
+    setY(480);
+    setVelocityY(0);
+  }
+}
+
+void Player::draw() const{
+  if(explosion) {
+    explosion->draw();
+  }
+  else images[currentFrame]->draw(getX(), getY(), getScale());
 }
