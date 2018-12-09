@@ -151,6 +151,10 @@ void Engine::play() {
           makeVideo = false;
         }
 
+        if ( keystate[SDL_SCANCODE_SPACE] ) {
+          static_cast<Player*>(sprites[0])->shoot();
+        }
+
         if(keystate[SDL_SCANCODE_F1]) {
           hud.toggle();
         }
@@ -175,12 +179,11 @@ void Engine::play() {
         static_cast<Player*>(sprites[0])->jump();
       }
 
-      if(keystate[SDL_SCANCODE_E]) {
+      /*if(keystate[SDL_SCANCODE_E]) {
         for(unsigned int i = 1; i < sprites.size(); i++){
           static_cast<SmartHeart*>(sprites[i])->explode();
         }
-      }
-
+      }*/
 
       draw();
 

@@ -55,7 +55,6 @@ inline namespace{
 }
 
 void Sprite::draw() const {
-    std::cout << "sprite draw" << std::endl;
     if(getScale() < SCALE_EPSILON) return;
     image->draw(getX(), getY(), getScale());
 }

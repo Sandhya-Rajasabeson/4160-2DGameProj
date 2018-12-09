@@ -118,6 +118,7 @@
   <frameInterval>100</frameInterval>
   <speedX>200</speedX>
   <speedY>0</speedY>
+  <bullet>arrow</bullet>
   <transparency>false</transparency>
 </bikerSprite>
 
@@ -128,7 +129,19 @@
   <frameInterval>100</frameInterval>
   <speedX>200</speedX>
   <speedY>0</speedY>
+  <bullet>arrow</bullet>
   <transparency>false</transparency>
 </leftbikerSprite>
+
+<arrow>
+  <file>assets/arrow.png</file>
+  <interval>150</interval>
+  <distance>320</distance>
+  <startLoc x="100" y="100"/>
+  <speedX>400</speedX>
+  <speedY>0</speedY>
+  <transparency>false</transparency>
+  <strategy>rectangular</strategy>
+</arrow>
 
 </GameData>
