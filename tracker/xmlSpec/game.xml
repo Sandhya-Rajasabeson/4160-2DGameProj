@@ -81,8 +81,8 @@
   <speedX>180</speedX>
   <speedY>180</speedY>
   <chunk>
-    <size>16</size>
-    <distance>200</distance>
+    <size>400</size>
+    <distance>50</distance>
   </chunk>
   <transparency>false</transparency>
 </blackHeart>

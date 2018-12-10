@@ -47,7 +47,7 @@ Engine::Engine() :
 {
   //need to replace with hearts. NEED MORE THINKING HERE
   for(int i = 0; i < 10; i++){
-    SmartHeart* temp = new SmartHeart("pinkHeart", player->getPosition(), player->getImage()->getWidth(), player->getImage()->getHeight());
+    SmartHeart* temp = new SmartHeart("blackHeart", player->getPosition(), player->getImage()->getWidth(), player->getImage()->getHeight());
     sprites.emplace_back(temp);
     player->attach(temp);
 
