@@ -4,23 +4,22 @@ Course: 4160
 
 Clemson Email Address: srajasa@g.clemson.edu
 
-Project no: 4
+Project no: 5
 
-Project due date: November23 2018
+Project due date: December 7 2018
 
-Project description: player character is a biker who has to jump over obstacles on the bridge
-(like people, birds. boxes etc), collect "good hearts" which will be rainbow colored, and
-avoid "bad hearts" which are dark colored. there will be floating clouds of spinning hearts
-which will shoot out either colored or dark hearts. the game ends when the player dies.
-I created the player sprite from scratch and I found gifs of the hearts online on this profile
+Project description: player must shoot black hearts that if they collide with they die. there will be a cloud that emits
+different colored hearts, some will give faster ammo, some will give more lives, some will make them bigger or go faster
+. the player will start with 3 lives and dies when they hit a black heart.
+I created the player and bullet sprite from scratch and I found gifs of the hearts online on this profile
 on giphy (https://giphy.com/simonfalk/) and I converted them into sprite sheets using this online
 gif to sprite sheet maker (https://ezgif.com/gif-to-sprite)
 
 The easiest part of this project:
-HUD, thank you Dr.Malloy! :'))))'
+shooting
 
 Problems that I had in completing this project:
-I was running a fever with a really bad sore throat and cold situation while I was
-coding the hardest part of this project which slowed things down considerably. But the moment
-I took a nap for a few hours I came back and was able to fix my issues in less than an hours.
-Moral of the story is to sleep.
+Did not realize that if you exit the window during an explosion you will have memory leaks,
+i spent five hours trying to fix memory leaks that just weren't there. but i learnt a Lot more about
+polymorphism, inheritance and how it relates to virtual vs non virtual destructors so that was honestly
+amazing.
