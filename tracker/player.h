@@ -9,7 +9,7 @@ class Player : public TwoWayMultiSprite {
 public:
   Player(const std::string&);
   Player(const Player&);
-  ~Player();
+  virtual ~Player();
   virtual void draw() const;
   virtual void update(Uint32 ticks);
 
@@ -36,7 +36,7 @@ private:
   float acceleration;
   std::vector<SmartHeart*> observingHearts;
   std::string bulletName;
-  BulletPool bullets;
+  BulletPool* bullets;
   float bulletSpeed;
 };
 #endif

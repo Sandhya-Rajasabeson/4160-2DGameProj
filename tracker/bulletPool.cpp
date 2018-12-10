@@ -14,7 +14,10 @@ CollisionStrategy* getStrategy(const string& name) {
 }
 
 BulletPool::~BulletPool() {
+  std::cout << "bulletpool" << std::endl;
   delete strategy;
+  bulletList.clear();
+  freeList.clear();
 }
 
 BulletPool::BulletPool(const std::string& n) :

@@ -25,10 +25,7 @@ ExplodingSprite::~ExplodingSprite() {
 void ExplodingSprite::draw() const {
   // We use the draw in Chunk, which derives from Sprite.
   // So the draw we're using is actually in Sprite
-  std::cout << "hi!" << std::endl;
-
   for ( Chunk* chunk : chunks ) {
-    std::cout << "hi!" << std::endl;
     chunk->draw();
   }
 }

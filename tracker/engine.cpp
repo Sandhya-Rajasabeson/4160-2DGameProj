@@ -16,11 +16,13 @@
   and update commands */
 
 Engine::~Engine() {
-  for(auto& sp : sprites){
+  delete player;
+  for(auto sp : sprites){
     delete sp;
   }
   sprites.clear();
   std::cout << "Terminating program" << std::endl;
+  delete cStrategy;
 }
 
 Engine::Engine() :
@@ -36,17 +38,17 @@ Engine::Engine() :
   city2("city2", Gamedata::getInstance().getXmlInt("city2/factor") ),
   city3("city3", Gamedata::getInstance().getXmlInt("city3/factor") ),
   city4("city4", Gamedata::getInstance().getXmlInt("city4/factor") ),
+  player(new Player("bikerSprite")),
   viewport( Viewport::getInstance() ),
   sprites(),
   cStrategy(new MidPointCollisionStrategy()),
   makeVideo( false )
 {
-  sprites.emplace_back(new Player("bikerSprite"));
   //need to replace with hearts. NEED MORE THINKING HERE
   for(int i = 0; i < 10; i++){
-    SmartHeart* temp = new SmartHeart("pinkHeart", sprites[0]);
+    SmartHeart* temp = new SmartHeart("pinkHeart", player);
     sprites.emplace_back(temp);
-    static_cast<Player*>(sprites[0])->attach(temp);
+    player->attach(temp);
 
   }
 
@@ -59,7 +61,7 @@ Engine::Engine() :
   background.emplace_back("city4", Gamedata::getInstance().getXmlInt("city4/factor"));
   background.emplace_back("bridge", Gamedata::getInstance().getXmlInt("bridge/factor")); //5 */
 
-  Viewport::getInstance().setObjectToTrack(sprites[0]);
+  Viewport::getInstance().setObjectToTrack(player);
 
   std::cout << "Loading complete" << std::endl;
 }
@@ -71,10 +73,10 @@ void Engine::draw() const {
   city2.draw();
   city1.draw();
 
-  sprites[0]->draw();
+  player->draw();
   bridge.draw();
 
-  for(unsigned int i = 1; i < sprites.size(); i++){
+  for(unsigned int i = 0; i < sprites.size(); i++){
     sprites[i]->draw();
   }
 
@@ -94,6 +96,7 @@ void Engine::update(Uint32 ticks) {
   city2.update();
   city1.update();
   bridge.update();
+  player->update(ticks);
 
   for(auto& sp : sprites){
 
@@ -105,15 +108,13 @@ void Engine::update(Uint32 ticks) {
 void Engine::checkForCollisions(){
 
   std::vector<Drawable*>::iterator it = sprites.begin();
-  it++; //skip Player
 
   while(it != sprites.end()){
-    if(cStrategy->execute(*sprites[0], **it)){
+    if(cStrategy->execute(*player, **it)){
       Drawable* dHeart = *it; //CHANGE drawable to AI class after executing AI
       static_cast<SmartHeart*>(dHeart)->explode();
-      static_cast<Player*>(sprites[0])->detach(static_cast<SmartHeart*>(dHeart));
-      static_cast<Player*>(sprites[0])->explode();
-      delete dHeart;
+      player->detach(static_cast<SmartHeart*>(dHeart));
+      player->explode();
       it = sprites.erase(it); //will point to next after deleting
     }
     else
@@ -152,7 +153,7 @@ void Engine::play() {
         }
 
         if ( keystate[SDL_SCANCODE_SPACE] ) {
-          static_cast<Player*>(sprites[0])->shoot();
+          player->shoot();
         }
 
         if(keystate[SDL_SCANCODE_F1]) {
@@ -168,22 +169,22 @@ void Engine::play() {
       clock.incrFrame();
 
       if(keystate[SDL_SCANCODE_A]) {
-        static_cast<Player*>(sprites[0])->left();
+        player->left();
       }
 
       if(keystate[SDL_SCANCODE_D]) {
-        static_cast<Player*>(sprites[0])->right();
+        player->right();
       }
 
       if(keystate[SDL_SCANCODE_W]) {
-        static_cast<Player*>(sprites[0])->jump();
+        player->jump();
       }
 
-      /*if(keystate[SDL_SCANCODE_E]) {
-        for(unsigned int i = 1; i < sprites.size(); i++){
+      if(keystate[SDL_SCANCODE_E]) {
+        for(unsigned int i = 0; i < sprites.size(); i++){
           static_cast<SmartHeart*>(sprites[i])->explode();
         }
-      }*/
+      }
 
       draw();
 

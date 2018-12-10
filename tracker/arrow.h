@@ -1,3 +1,6 @@
+#ifndef ARROW__H
+#define ARROW__H
+
 #include <iostream>
 #include "sprite.h"
 #include "gameData.h"
@@ -22,3 +25,4 @@ private:
   float maxDistance;
   bool tooFar;
 };
+#endif

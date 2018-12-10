@@ -9,11 +9,15 @@ Player::Player( const std::string& name) :
   acceleration(12),
   observingHearts(),
   bulletName( Gamedata::getInstance().getXmlStr(name+"/bullet") ),
-  bullets(bulletName),
+  bullets(new BulletPool(bulletName)),
   bulletSpeed(Gamedata::getInstance().getXmlInt(bulletName+"/speedX"))
 { }
 
-Player::~Player() { if (explosion) delete explosion; }
+Player::~Player() {
+  if(explosion)
+    delete explosion;
+  delete bullets;
+}
 
 Player::Player(const Player& s) :
   TwoWayMultiSprite(s),
@@ -74,7 +78,7 @@ void Player::update(Uint32 ticks){
     return;
   }
   advanceFrame(ticks);
-  bullets.update(ticks);
+  bullets->update(ticks);
 
   float incr = getVelocityY() * static_cast<float>(ticks) * 0.001;
   setY(getY() + incr);
@@ -153,17 +157,17 @@ void Player::draw() const{
   }
   else {
     TwoWayMultiSprite::draw();
-    bullets.draw();
+    bullets->draw();
   }
 }
 
 void Player::shoot(){
   if(getVelocityX() > 0){ //going right
-    bullets.shoot(Vector2f(getX()+getImage()->getWidth(), getY()+((getImage()->getHeight()/2)-20)),
+    bullets->shoot(Vector2f(getX()+getImage()->getWidth(), getY()+((getImage()->getHeight()/2)-20)),
       Vector2f(bulletSpeed+getVelocityX(),0));
   }
   else {
-    bullets.shoot(Vector2f(getX(), getY()+((getImage()->getHeight()/2)-20)),
+    bullets->shoot(Vector2f(getX(), getY()+((getImage()->getHeight()/2)-20)),
       Vector2f(-1*bulletSpeed+getVelocityX(),0));
   }
 

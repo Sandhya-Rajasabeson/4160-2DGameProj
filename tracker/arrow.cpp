@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cmath>
 #include "arrow.h"
-#include "collisionStrategy.h"
 
 void Arrow::update(Uint32 ticks) {
   Vector2f pos = getPosition();
