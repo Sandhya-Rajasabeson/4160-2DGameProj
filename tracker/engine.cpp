@@ -16,12 +16,13 @@
   and update commands */
 
 Engine::~Engine() {
+  std::cout << "Terminating program" << std::endl;
+
   delete player;
   for(auto sp : sprites){
     delete sp;
   }
   sprites.clear();
-  std::cout << "Terminating program" << std::endl;
   delete cStrategy;
 }
 
@@ -46,20 +47,11 @@ Engine::Engine() :
 {
   //need to replace with hearts. NEED MORE THINKING HERE
   for(int i = 0; i < 10; i++){
-    SmartHeart* temp = new SmartHeart("pinkHeart", player);
+    SmartHeart* temp = new SmartHeart("pinkHeart", player->getPosition(), player->getImage()->getWidth(), player->getImage()->getHeight());
     sprites.emplace_back(temp);
     player->attach(temp);
 
   }
-
-  /*//why doesn't this wwork? i have a feeling it has to do with world(world&) being private. (bc no reserve) but how to set up reserve with this
-  //also why does moving constructor to publlic break too?
-  background.emplace_back("sky", Gamedata::getInstance().getXmlInt("sky/factor")); //0
-  background.emplace_back("city1", Gamedata::getInstance().getXmlInt("city1/factor"));
-  background.emplace_back("city2", Gamedata::getInstance().getXmlInt("city2/factor"));
-  background.emplace_back("city3", Gamedata::getInstance().getXmlInt("city3/factor"));
-  background.emplace_back("city4", Gamedata::getInstance().getXmlInt("city4/factor"));
-  background.emplace_back("bridge", Gamedata::getInstance().getXmlInt("bridge/factor")); //5 */
 
   Viewport::getInstance().setObjectToTrack(player);
 
@@ -110,15 +102,20 @@ void Engine::checkForCollisions(){
   std::vector<Drawable*>::iterator it = sprites.begin();
 
   while(it != sprites.end()){
-    if(cStrategy->execute(*player, **it)){
-      Drawable* dHeart = *it; //CHANGE drawable to AI class after executing AI
-      static_cast<SmartHeart*>(dHeart)->explode();
-      player->detach(static_cast<SmartHeart*>(dHeart));
-      player->explode();
-      it = sprites.erase(it); //will point to next after deleting
+    Drawable* dHeart = *it;
+    if(!static_cast<SmartHeart*>(dHeart)->isExploding()){
+      if(cStrategy->execute(*player, **it)){ //if player collides with heart
+        player->explode();
+      }
+      if(player->collidedWith(*it)){ //if bullet collides with something
+        static_cast<SmartHeart*>(dHeart)->explode();
+        //player->detach(static_cast<SmartHeart*>(dHeart));
+        //it = sprites.erase(it); //will point to next after deleting
+        dHeart->setX(rand()%player->getWorldWidth());
+        dHeart->setY(rand()%player->getWorldHeight());
+      }
     }
-    else
-      it++;
+    it++;
   }
 }
 

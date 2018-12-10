@@ -22,7 +22,6 @@ public:
   Chunk& operator=(      Chunk&&)=default;
 
   virtual ~Chunk(){
-    std::cout << "chunks" << std::endl;
     delete image;
   }
   virtual void update(Uint32 ticks);

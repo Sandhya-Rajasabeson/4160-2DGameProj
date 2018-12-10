@@ -8,7 +8,6 @@
 class ExplodingHearts : public MultiSprite {
 public:
   ExplodingHearts(const MultiSprite& s);
-  //virtual ~ExplodingHearts();
   virtual void draw() const;
   virtual void update(Uint32 ticks);
   bool reachedEnd() const;

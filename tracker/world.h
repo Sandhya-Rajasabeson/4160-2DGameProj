@@ -8,6 +8,7 @@ public:
   // ~World() { } // The image will be deleted by the FrameFactory
   void update();
   void draw() const;
+
 private:
   Image* const image;
   int factor;

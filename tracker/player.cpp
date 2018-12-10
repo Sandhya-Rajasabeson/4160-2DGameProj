@@ -17,6 +17,7 @@ Player::~Player() {
   if(explosion)
     delete explosion;
   delete bullets;
+  observingHearts.clear();
 }
 
 Player::Player(const Player& s) :
@@ -171,4 +172,8 @@ void Player::shoot(){
       Vector2f(-1*bulletSpeed+getVelocityX(),0));
   }
 
+}
+
+bool Player::collidedWith(const Drawable* obj) const {
+  return bullets->collidedWith( obj );
 }

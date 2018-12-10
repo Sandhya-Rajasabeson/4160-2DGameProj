@@ -4,6 +4,7 @@
 #include "hud.h"
 #include "world.h"
 #include "viewport.h"
+#include "player.h"
 #include "collisionStrategy.h"
 
 class Engine {

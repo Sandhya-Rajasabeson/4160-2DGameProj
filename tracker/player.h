@@ -23,6 +23,8 @@ public:
   void notifyHearts();
   void detach(SmartHeart*);
 
+  bool collidedWith(const Drawable* obj) const;
+
   virtual void explode();
   void shoot();
 
