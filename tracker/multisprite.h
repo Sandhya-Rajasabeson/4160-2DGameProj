@@ -25,6 +25,9 @@ public:
     return images[currentFrame]->getSurface();
   }
 
+  int getWorldWidth() const {return worldWidth;}
+  int getWorldHeight() const {return worldHeight;}
+
 protected:
   std::vector<Image *> images;
 

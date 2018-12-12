@@ -4,6 +4,7 @@
 #include "hud.h"
 #include "world.h"
 #include "viewport.h"
+#include "player.h"
 #include "collisionStrategy.h"
 
 class Engine {
@@ -27,6 +28,7 @@ private:
   World city2;
   World city3;
   World city4;
+  Player* player;
   //std::vector<World> background;
   Viewport& viewport;
 

@@ -27,6 +27,10 @@ OBJS = \
 	collisionStrategy.o \
 	smartHeart.o \
 	explodingHearts.o \
+	explodingSprite.o \
+	chunk.o \
+	arrow.o \
+	bulletPool.o \
 	main.o
 EXEC = run
 

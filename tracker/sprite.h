@@ -2,6 +2,7 @@
 #define SPRITE__H
 #include <string>
 #include "drawable.h"
+// #include "explodingSprite.h"
 
 class Sprite : public Drawable {
 public:
@@ -9,11 +10,12 @@ public:
   Sprite(const std::string&, const Vector2f& pos, const Vector2f& vel,
          const Image*);
   Sprite(const Sprite&);
-  virtual ~Sprite() { }
+  virtual ~Sprite() {}
   Sprite& operator=(const Sprite&);
 
   virtual void draw() const;
   virtual void update(Uint32 ticks);
+  // virtual void explode();
 
   virtual const Image* getImage() const { return image; }
   virtual const SDL_Surface* getSurface() const {
@@ -21,6 +23,9 @@ public:
   }
   int getScaledWidth()  const { return getScale()*image->getWidth();  }
   int getScaledHeight() const { return getScale()*image->getHeight(); }
+
+  int getWorldWidth() const {return worldWidth;}
+  int getWorldHeight() const {return worldHeight;}
 
 private:
   const Image * image;

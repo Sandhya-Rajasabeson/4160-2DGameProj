@@ -3,12 +3,13 @@
 #include "twoWayMultisprite.h"
 #include "smartHeart.h"
 #include "explodingHearts.h"
+#include "bulletPool.h"
 
 class Player : public TwoWayMultiSprite {
 public:
   Player(const std::string&);
   Player(const Player&);
-  ~Player();
+  virtual ~Player();
   virtual void draw() const;
   virtual void update(Uint32 ticks);
 
@@ -22,18 +23,22 @@ public:
   void notifyHearts();
   void detach(SmartHeart*);
 
-  void explode();
+  bool collidedWith(const Drawable* obj) const;
+
+  virtual void explode();
+  void shoot();
 
 
 protected:
-  Player& operator=(const Player&);
   ExplodingHearts* explosion;
 
 private:
+  Player& operator=(const Player&);
   Vector2f initialVelocity;
   float acceleration;
   std::vector<SmartHeart*> observingHearts;
-  //Vector2f prePosition;
-  //Vector2f getExplosionPosition();
+  std::string bulletName;
+  BulletPool* bullets;
+  float bulletSpeed;
 };
 #endif

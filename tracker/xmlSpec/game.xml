@@ -20,7 +20,7 @@
 <hud>
   <loc x="10" y="10"/>
   <width>250</width>
-  <height>150</height>
+  <height>185</height>
 </hud>
 
 <world>
@@ -80,6 +80,10 @@
   <frameInterval>100</frameInterval>
   <speedX>180</speedX>
   <speedY>180</speedY>
+  <chunk>
+    <size>30</size>
+    <distance>100</distance>
+  </chunk>
   <transparency>false</transparency>
 </blackHeart>
 
@@ -90,6 +94,10 @@
   <frameInterval>100</frameInterval>
   <speedX>180</speedX>
   <speedY>180</speedY>
+  <chunk>
+    <size>16</size>
+    <distance>200</distance>
+  </chunk>
   <transparency>false</transparency>
 </pinkHeart>
 
@@ -110,6 +118,7 @@
   <frameInterval>100</frameInterval>
   <speedX>200</speedX>
   <speedY>0</speedY>
+  <bullet>arrow</bullet>
   <transparency>false</transparency>
 </bikerSprite>
 
@@ -120,7 +129,19 @@
   <frameInterval>100</frameInterval>
   <speedX>200</speedX>
   <speedY>0</speedY>
+  <bullet>arrow</bullet>
   <transparency>false</transparency>
 </leftbikerSprite>
+
+<arrow>
+  <file>assets/arrow.png</file>
+  <interval>150</interval>
+  <distance>320</distance>
+  <startLoc x="100" y="100"/>
+  <speedX>400</speedX>
+  <speedY>0</speedY>
+  <transparency>false</transparency>
+  <strategy>rectangular</strategy>
+</arrow>
 
 </GameData>
