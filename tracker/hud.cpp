@@ -38,7 +38,6 @@ void Hud::draw() const {
       io.writeText("W: jump!", hudFrame.x+15, hudFrame.y+105);
       io.writeText("spcbr: shoot", hudFrame.x+15, hudFrame.y+135);
 
-
   }
 }
 

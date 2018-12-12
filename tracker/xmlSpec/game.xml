@@ -20,7 +20,7 @@
 <hud>
   <loc x="10" y="10"/>
   <width>250</width>
-  <height>185</height>
+  <height>200</height>
 </hud>
 
 <world>
@@ -86,6 +86,20 @@
   </chunk>
   <transparency>false</transparency>
 </blackHeart>
+
+<rainbowHeart>
+  <file>assets/rainbowHeart.png</file>
+  <startLoc x="350" y="400"/>
+  <frames>33</frames>
+  <frameInterval>100</frameInterval>
+  <speedX>180</speedX>
+  <speedY>180</speedY>
+  <chunk>
+    <size>2</size>
+    <distance>100</distance>
+  </chunk>
+  <transparency>false</transparency>
+</rainbowHeart>
 
 <pinkHeart>
   <file>assets/pinkHeart.png</file>

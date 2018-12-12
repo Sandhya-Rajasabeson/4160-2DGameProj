@@ -33,6 +33,8 @@ public:
   int getLives() { return lives;}
   int getPoints() { return points;}
 
+  void energy(std::string);
+
 
 protected:
   ExplodingHearts* explosion;

@@ -62,17 +62,17 @@ float Player::getAcceleration(){
 }
 
 void Player::right() {
-  if ( getX() < worldWidth-getScaledWidth()) {
+  //if ( getX() < worldWidth-getScaledWidth()) {
     setVelocityX(-initialVelocity[0]);
     images = rightImages;
-  }
+  //}
 }
 
 void Player::left()  {
-  if ( getX() > 0) {
+  //if ( getX() > 0) {
     setVelocityX(initialVelocity[0]);
     images = leftImages;
-  }
+  //}
 }
 
 void Player::jump(){
@@ -176,16 +176,19 @@ void Player::draw() const{
     bullets->draw();
   }
 
-  std::stringstream stream;
-  stream << "Lives";
-  IoMod::getInstance().
-    writeText(stream.str(), 15, 15);
-  stream.clear();
-  stream.str("");
-  for(int i = 0; i < lives; i++)
-    stream << "<3  ";
-  IoMod::getInstance().
-    writeText(stream.str(), 85, 15);
+  if(lives > 0){
+    std::stringstream stream;
+    stream << "Lives";
+    IoMod::getInstance().
+      writeText(stream.str(), 15, 15);
+    stream.clear();
+    stream.str("");
+    for(int i = 0; i < lives; i++)
+      stream << "<3  ";
+    IoMod::getInstance().
+      writeText(stream.str(), 85, 15);
+  }
+
 }
 
 void Player::shoot(){
@@ -204,4 +207,11 @@ void Player::shoot(){
 
 bool Player::collidedWith(const Drawable* obj) const {
   return bullets->collidedWith( obj );
+}
+
+void Player::energy(std::string color){
+  if(color == "pinkHeart")
+    lives++;
+  if(color == "rainbowHeart")
+    points++;
 }

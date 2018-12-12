@@ -50,7 +50,7 @@ Engine::Engine() :
 {
   //need to replace with hearts. NEED MORE THINKING HERE
 
-  SmartHeart* temp = new SmartHeart("pinkHeart", player->getPosition(), player->getImage()->getWidth(), player->getImage()->getHeight());
+  SmartHeart* temp = new SmartHeart("rainbowHeart", player->getPosition(), player->getImage()->getWidth(), player->getImage()->getHeight());
   sprites.emplace_back(temp);
   player->attach(temp);
 
@@ -85,6 +85,17 @@ void Engine::draw() const {
 
   for(unsigned int i = 0; i < sprites.size(); i++){
     sprites[i]->draw();
+  }
+
+  if(player->getLives() == 0){
+    // Set the hud background color:
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+    SDL_SetRenderDrawColor( renderer, 0, 0, 15, 255/2 );
+    // Draw the  background
+    SDL_RenderFillRect( renderer, new SDL_Rect{0, 0, 800, 600});
+
+    io.writeText("You lost :(\nScore: "+std::to_string(player->getPoints())+"pts\nRestart?(y/n)", 200, 250,SDL_Color({0, 255, 255, 255}));
+    clock.pause();
   }
 
   io.writeText("Sandhya Rajasabeson", 30, Gamedata::getInstance().getXmlInt("view/height") - Gamedata::getInstance().getXmlInt("city1/factor") - Gamedata::getInstance().getXmlInt("font/size") - 5, SDL_Color({255, 204, 255, 255}));
@@ -125,13 +136,10 @@ void Engine::checkForCollisions(){
             sounds[2];
             player->explode();
           }
-          static_cast<SmartHeart*>(dHeart)->explode();
-          dHeart->setX(rand()%player->getWorldWidth());
-          dHeart->setY(rand()%player->getWorldHeight());
         }
-        else {
-          //player->energy(dHeart->getColor());
-        }
+        static_cast<SmartHeart*>(dHeart)->explode();
+        dHeart->setX(rand()%player->getWorldWidth());
+        dHeart->setY(rand()%player->getWorldHeight());
       }
       if(player->collidedWith(*it)){ //if bullet collides with something
         sounds[1];
@@ -140,13 +148,14 @@ void Engine::checkForCollisions(){
         //it = sprites.erase(it); //will point to next after deleting
         dHeart->setX(rand()%player->getWorldWidth());
         dHeart->setY(rand()%player->getWorldHeight());
+        player->energy(static_cast<SmartHeart*>(dHeart)->getColor());
       }
     }
     it++;
   }
 }
 
-void Engine::play() {
+bool Engine::play() {
   SDL_Event event;
   const Uint8* keystate;
   bool done = false;
@@ -167,6 +176,9 @@ void Engine::play() {
           if ( clock.isPaused() ) clock.unpause();
           else clock.pause();
         }
+        if ( keystate[SDL_SCANCODE_R] ) {
+          return true;
+        }
         if (keystate[SDL_SCANCODE_F4] && !makeVideo) {
           std::cout << "Initiating frame capture" << std::endl;
           makeVideo = true;
@@ -183,6 +195,11 @@ void Engine::play() {
 
         if(keystate[SDL_SCANCODE_F1]) {
           hud.toggle();
+        }
+
+        if(keystate[SDL_SCANCODE_Y] && clock.isPaused()) {
+          //clock.unpause();
+          return true;
         }
       }
     }
@@ -217,4 +234,6 @@ void Engine::play() {
       }
     }
   }
+
+  return false;
 }
