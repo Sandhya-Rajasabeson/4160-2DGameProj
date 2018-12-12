@@ -10,7 +10,9 @@ Player::Player( const std::string& name) :
   observingHearts(),
   bulletName( Gamedata::getInstance().getXmlStr(name+"/bullet") ),
   bullets(new BulletPool(bulletName)),
-  bulletSpeed(Gamedata::getInstance().getXmlInt(bulletName+"/speedX"))
+  bulletSpeed(Gamedata::getInstance().getXmlInt(bulletName+"/speedX")),
+  lives(3),
+  points(0)
   //soundIndex(),
   //sounds()
 {
@@ -33,7 +35,9 @@ Player::Player(const Player& s) :
   observingHearts(s.observingHearts),
   bulletName(s.bulletName),
   bullets(s.bullets),
-  bulletSpeed(s.bulletSpeed)
+  bulletSpeed(s.bulletSpeed),
+  lives(s.lives),
+  points(s.points)
   //soundIndex(s.soundIndex),
   //sounds(s.sounds)
 { }
@@ -156,6 +160,7 @@ void Player::explode(){
     explosion->setY(getY()-55);
     setY(480);
     setVelocityY(0);
+    lives--;
   }
 }
 

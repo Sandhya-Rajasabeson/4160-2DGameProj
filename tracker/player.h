@@ -30,6 +30,9 @@ public:
 
   bool isExploding() { return explosion; }
 
+  int numLives() { return lives;}
+  int getPoints() { return points;}
+
 
 protected:
   ExplodingHearts* explosion;
@@ -42,5 +45,7 @@ private:
   std::string bulletName;
   BulletPool* bullets;
   float bulletSpeed;
+  int lives;
+  int points;
 };
 #endif
