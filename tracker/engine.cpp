@@ -44,12 +44,24 @@ Engine::Engine() :
   sprites(),
   cStrategy(new MidPointCollisionStrategy()),
   makeVideo( false ),
-  sounds()
+  sounds(),
+  godMode(false)
   //soundIndex()
 {
   //need to replace with hearts. NEED MORE THINKING HERE
-  for(int i = 0; i < 10; i++){
-    SmartHeart* temp = new SmartHeart("pinkHeart", player->getPosition(), player->getImage()->getWidth(), player->getImage()->getHeight());
+
+  SmartHeart* temp = new SmartHeart("pinkHeart", player->getPosition(), player->getImage()->getWidth(), player->getImage()->getHeight());
+  /*sprites.emplace_back(temp);
+  player->attach(temp);*/
+
+  for(int i = 0; i < 4; i++){
+    temp = new SmartHeart("pinkHeart", player->getPosition(), player->getImage()->getWidth(), player->getImage()->getHeight());
+    sprites.emplace_back(temp);
+    player->attach(temp);
+
+  }
+  for(int i = 0; i < 4; i++){
+    temp = new SmartHeart("blackHeart", player->getPosition(), player->getImage()->getWidth(), player->getImage()->getHeight());
     sprites.emplace_back(temp);
     player->attach(temp);
 
@@ -107,9 +119,19 @@ void Engine::checkForCollisions(){
   while(it != sprites.end()){
     Drawable* dHeart = *it;
     if(!static_cast<SmartHeart*>(dHeart)->isExploding()){
-      if(cStrategy->execute(*player, **it)){ //if player collides with heart
-        sounds[2];
-        player->explode();
+      if(cStrategy->execute(*player, **it) && !player->isExploding()){ //if player collides with heart
+        if(static_cast<SmartHeart*>(dHeart)->getColor() == "blackHeart"){
+          if(!godMode){
+            sounds[2];
+            player->explode();
+          }
+          static_cast<SmartHeart*>(dHeart)->explode();
+          dHeart->setX(rand()%player->getWorldWidth());
+          dHeart->setY(rand()%player->getWorldHeight());
+        }
+        else {
+          //player->energy(dHeart->getColor());
+        }
       }
       if(player->collidedWith(*it)){ //if bullet collides with something
         sounds[1];
@@ -183,10 +205,8 @@ void Engine::play() {
         player->jump();
       }
 
-      if(keystate[SDL_SCANCODE_E]) {
-        for(unsigned int i = 0; i < sprites.size(); i++){
-          static_cast<SmartHeart*>(sprites[i])->explode();
-        }
+      if(keystate[SDL_SCANCODE_G]) {
+        godMode = !godMode;
       }
 
       draw();

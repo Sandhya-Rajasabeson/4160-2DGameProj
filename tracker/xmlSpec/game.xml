@@ -81,7 +81,7 @@
   <speedX>180</speedX>
   <speedY>180</speedY>
   <chunk>
-    <size>30</size>
+    <size>2</size>
     <distance>100</distance>
   </chunk>
   <transparency>false</transparency>
@@ -95,7 +95,7 @@
   <speedX>180</speedX>
   <speedY>180</speedY>
   <chunk>
-    <size>16</size>
+    <size>2</size>
     <distance>200</distance>
   </chunk>
   <transparency>false</transparency>

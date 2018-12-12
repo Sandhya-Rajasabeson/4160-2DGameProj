@@ -28,6 +28,8 @@ public:
   virtual void explode();
   void shoot();
 
+  bool isExploding() { return explosion; }
+
 
 protected:
   ExplodingHearts* explosion;

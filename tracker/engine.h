@@ -41,6 +41,7 @@ private:
   bool makeVideo;
 
   SDLSound sounds;
+  bool godMode;
   //std::map<std::string, int> soundIndex;
 
   void draw() const;

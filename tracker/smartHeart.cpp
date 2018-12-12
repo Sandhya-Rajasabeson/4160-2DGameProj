@@ -18,7 +18,8 @@ SmartHeart::SmartHeart(const std::string& name, const Vector2f& pos, int w, int 
   bikerWidth(w),
   bikerHeight(h),
   currentMode(NORMAL),
-  safeDistance(90) //find way to calculate, hard coded for now
+  safeDistance(90), //find way to calculate, hard coded for now
+  color(name)
 {}
 
 
@@ -29,7 +30,8 @@ SmartHeart::SmartHeart(const SmartHeart& s) :
   bikerWidth(s.bikerWidth),
   bikerHeight(s.bikerHeight),
   currentMode(s.currentMode),
-  safeDistance(s.safeDistance)
+  safeDistance(s.safeDistance),
+  color(s.color)
 {}
 
 void SmartHeart::left()  {
@@ -74,7 +76,7 @@ void SmartHeart::update(Uint32 ticks) {
   if(currentMode == NORMAL){
     if(distanceToEnemy <= safeDistance) currentMode = EVADE;
   }
-  else if(currentMode == EVADE){
+  else if(currentMode == EVADE && color != "blackHeart"){
     if(distanceToEnemy > safeDistance)
       currentMode=NORMAL;
     else{
@@ -85,8 +87,8 @@ void SmartHeart::update(Uint32 ticks) {
     }
   }
 
-  if(getY() > 460){ //lower than bridge
-    setY(460);
+  if(getY() > 460 && color == "blackHeart"){ //lower than bridge
+    setVelocityY(-1*getVelocityY());
   }
 
   MultiSprite::update(ticks); //need to call to update normally as well

@@ -18,6 +18,7 @@ public:
   virtual void explode();
   bool isExploding(){return explosion;}
 
+  std::string getColor() { return color; }
 
 protected:
   SmartHeart& operator=(const SmartHeart&);
@@ -30,6 +31,7 @@ private:
   int bikerHeight;
   MODE currentMode;
   float safeDistance;
+  std::string color;
 
   void left();
   void right();
