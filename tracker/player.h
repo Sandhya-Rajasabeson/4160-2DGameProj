@@ -34,6 +34,7 @@ public:
   int getPoints() { return points;}
 
   void energy(std::string);
+  void energyPlus(std::string color);
 
 
 protected:

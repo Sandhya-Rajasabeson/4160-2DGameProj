@@ -92,9 +92,10 @@ void Engine::draw() const {
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
     SDL_SetRenderDrawColor( renderer, 0, 0, 15, 255/2 );
     // Draw the  background
-    SDL_RenderFillRect( renderer, new SDL_Rect{0, 0, 800, 600});
+    SDL_Rect rect = {0, 0, 800, 600};
+    SDL_RenderFillRect( renderer, &rect);
 
-    io.writeText("You lost :(\nScore: "+std::to_string(player->getPoints())+"pts\nRestart?(y/n)", 200, 250,SDL_Color({0, 255, 255, 255}));
+    io.writeText("You lost :(\nScore: "+std::to_string(player->getPoints())+"pts\nRestart?(r)", 200, 250,SDL_Color({0, 255, 255, 255}));
     clock.pause();
   }
 
@@ -140,6 +141,7 @@ void Engine::checkForCollisions(){
         static_cast<SmartHeart*>(dHeart)->explode();
         dHeart->setX(rand()%player->getWorldWidth());
         dHeart->setY(rand()%player->getWorldHeight());
+        player->energyPlus(static_cast<SmartHeart*>(dHeart)->getColor());
       }
       if(player->collidedWith(*it)){ //if bullet collides with something
         sounds[1];
@@ -176,7 +178,8 @@ bool Engine::play() {
           if ( clock.isPaused() ) clock.unpause();
           else clock.pause();
         }
-        if ( keystate[SDL_SCANCODE_R] ) {
+        if ( keystate[SDL_SCANCODE_R] && clock.isPaused() && player->getLives() == 0) {
+          if ( clock.isPaused() ) clock.unpause();
           return true;
         }
         if (keystate[SDL_SCANCODE_F4] && !makeVideo) {
@@ -188,7 +191,7 @@ bool Engine::play() {
           makeVideo = false;
         }
 
-        if ( keystate[SDL_SCANCODE_SPACE] ) {
+        if ( keystate[SDL_SCANCODE_SPACE] && !clock.isPaused()) {
           sounds[0];
           player->shoot();
         }
@@ -197,10 +200,6 @@ bool Engine::play() {
           hud.toggle();
         }
 
-        if(keystate[SDL_SCANCODE_Y] && clock.isPaused()) {
-          //clock.unpause();
-          return true;
-        }
       }
     }
 

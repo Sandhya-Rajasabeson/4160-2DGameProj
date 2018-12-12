@@ -134,6 +134,7 @@
   <speedY>0</speedY>
   <bullet>arrow</bullet>
   <transparency>false</transparency>
+  <lives>1</lives>
 </bikerSprite>
 
 <leftbikerSprite>
