@@ -6,6 +6,7 @@
 #include "viewport.h"
 #include "player.h"
 #include "collisionStrategy.h"
+#include "sound.h"
 
 class Engine {
 public:
@@ -38,6 +39,9 @@ private:
   CollisionStrategy* cStrategy;
 
   bool makeVideo;
+
+  SDLSound sounds;
+  //std::map<std::string, int> soundIndex;
 
   void draw() const;
   void update(Uint32);

@@ -43,7 +43,9 @@ Engine::Engine() :
   viewport( Viewport::getInstance() ),
   sprites(),
   cStrategy(new MidPointCollisionStrategy()),
-  makeVideo( false )
+  makeVideo( false ),
+  sounds()
+  //soundIndex()
 {
   //need to replace with hearts. NEED MORE THINKING HERE
   for(int i = 0; i < 10; i++){
@@ -53,6 +55,7 @@ Engine::Engine() :
 
   }
 
+  //soundIndex = sounds.getSoundIndex();
   Viewport::getInstance().setObjectToTrack(player);
 
   std::cout << "Loading complete" << std::endl;
@@ -105,9 +108,11 @@ void Engine::checkForCollisions(){
     Drawable* dHeart = *it;
     if(!static_cast<SmartHeart*>(dHeart)->isExploding()){
       if(cStrategy->execute(*player, **it)){ //if player collides with heart
+        sounds[2];
         player->explode();
       }
       if(player->collidedWith(*it)){ //if bullet collides with something
+        sounds[1];
         static_cast<SmartHeart*>(dHeart)->explode();
         //player->detach(static_cast<SmartHeart*>(dHeart));
         //it = sprites.erase(it); //will point to next after deleting
@@ -150,6 +155,7 @@ void Engine::play() {
         }
 
         if ( keystate[SDL_SCANCODE_SPACE] ) {
+          sounds[0];
           player->shoot();
         }
 

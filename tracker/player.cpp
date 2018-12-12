@@ -11,7 +11,12 @@ Player::Player( const std::string& name) :
   bulletName( Gamedata::getInstance().getXmlStr(name+"/bullet") ),
   bullets(new BulletPool(bulletName)),
   bulletSpeed(Gamedata::getInstance().getXmlInt(bulletName+"/speedX"))
-{ }
+  //soundIndex(),
+  //sounds()
+{
+  //sounds.addMusicWAV("shoot");
+  //soundIndex.insert(std::make_pair<string, int>("shoot", 0));
+}
 
 Player::~Player() {
   if(explosion)
@@ -29,6 +34,8 @@ Player::Player(const Player& s) :
   bulletName(s.bulletName),
   bullets(s.bullets),
   bulletSpeed(s.bulletSpeed)
+  //soundIndex(s.soundIndex),
+  //sounds(s.sounds)
 { }
 
 /*Player& Player::operator=(const Player& s) {
@@ -163,6 +170,8 @@ void Player::draw() const{
 }
 
 void Player::shoot(){
+  //std::cout << soundIndex["shoot"] << std::endl;
+  //sounds[soundIndex["shoot"]];
   if(getVelocityX() > 0){ //going right
     bullets->shoot(Vector2f(getX()+getImage()->getWidth(), getY()+((getImage()->getHeight()/2)-20)),
       Vector2f(bulletSpeed+getVelocityX(),0));
