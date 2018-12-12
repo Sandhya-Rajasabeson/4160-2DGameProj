@@ -1,6 +1,9 @@
 #include "player.h"
 #include "gameData.h"
 #include "imageFactory.h"
+#include "ioMod.h"
+#include <iostream>
+#include <sstream>
 
 Player::Player( const std::string& name) :
   TwoWayMultiSprite(name),
@@ -172,6 +175,17 @@ void Player::draw() const{
     TwoWayMultiSprite::draw();
     bullets->draw();
   }
+
+  std::stringstream stream;
+  stream << "Lives";
+  IoMod::getInstance().
+    writeText(stream.str(), 15, 15);
+  stream.clear();
+  stream.str("");
+  for(int i = 0; i < lives; i++)
+    stream << "<3  ";
+  IoMod::getInstance().
+    writeText(stream.str(), 85, 15);
 }
 
 void Player::shoot(){

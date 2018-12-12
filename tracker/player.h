@@ -30,7 +30,7 @@ public:
 
   bool isExploding() { return explosion; }
 
-  int numLives() { return lives;}
+  int getLives() { return lives;}
   int getPoints() { return points;}
 
 

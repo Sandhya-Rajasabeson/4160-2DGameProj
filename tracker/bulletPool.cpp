@@ -77,15 +77,6 @@ void BulletPool::shoot(const Vector2f& position, const Vector2f& velocity) {
 }
 
 void BulletPool::draw() const {
-  std::stringstream stream;
-  stream << "Active bullets: " << bulletList.size();
-  IoMod::getInstance().
-    writeText(stream.str(), 500, 30);
-  stream.clear();
-  stream.str("");
-  stream << "Bullet pool: " << freeList.size();
-  IoMod::getInstance().
-    writeText(stream.str(), 500, 60);
   for ( Arrow bullet : bulletList ) {
     bullet.draw();
   }
