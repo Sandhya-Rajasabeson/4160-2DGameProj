@@ -46,7 +46,8 @@ Engine::Engine() :
   cStrategy(new MidPointCollisionStrategy()),
   makeVideo( false ),
   sounds(),
-  godMode(false)
+  godMode(false),
+  nightMode(false)
   //soundIndex()
 {
   //need to replace with hearts. NEED MORE THINKING HERE
@@ -81,7 +82,12 @@ void Engine::draw() const {
   city2.draw();
   city1.draw();
   player->draw();
-  lights.draw();
+  if(nightMode) {
+    for(unsigned int i = 0; i < sprites.size(); i++){
+      sprites[i]->draw();
+    }
+    lights.draw();
+  }
   bridge.draw();
 
   if(player->getLives() > 0){
@@ -107,8 +113,10 @@ void Engine::draw() const {
       writeText(strm.str(), 95, 45);
   }
 
-  for(unsigned int i = 0; i < sprites.size(); i++){
-    sprites[i]->draw();
+  if(!nightMode){
+    for(unsigned int i = 0; i < sprites.size(); i++){
+      sprites[i]->draw();
+    }
   }
 
   if(player->getLives() == 0){
@@ -124,7 +132,10 @@ void Engine::draw() const {
   }
 
   io.writeText("Sandhya Rajasabeson", 30, Gamedata::getInstance().getXmlInt("view/height") - Gamedata::getInstance().getXmlInt("city1/factor") - Gamedata::getInstance().getXmlInt("font/size") - 5, SDL_Color({255, 204, 255, 255}));
+  if(godMode){
+    io.writeText("!!!!!GOD MODE!!!!!!", 30, 100, SDL_Color({255, 204, 255, 255}));
 
+  }
   hud.draw();
   viewport.draw();
 
@@ -139,13 +150,18 @@ void Engine::update(Uint32 ticks) {
   city2.update();
   city1.update();
   player->update(ticks);
-  lights.update();
+  if(nightMode) {
+    for(auto& sp : sprites)
+      sp->update(ticks);
+    lights.update();
+  }
   bridge.update();
 
-  for(auto& sp : sprites){
-
-    sp->update(ticks);
+  if(!nightMode){
+    for(auto& sp : sprites)
+      sp->update(ticks);
   }
+
   viewport.update(); // always update viewport last
 }
 
@@ -225,6 +241,13 @@ bool Engine::play() {
           hud.toggle();
         }
 
+        if(keystate[SDL_SCANCODE_N]) {
+          nightMode = !nightMode;
+        }
+
+        if(keystate[SDL_SCANCODE_G]) {
+          godMode = !godMode;
+        }
       }
     }
 
@@ -244,10 +267,6 @@ bool Engine::play() {
 
       if(keystate[SDL_SCANCODE_W]) {
         player->jump();
-      }
-
-      if(keystate[SDL_SCANCODE_G]) {
-        godMode = !godMode;
       }
 
       draw();

@@ -44,6 +44,7 @@ private:
 
   SDLSound sounds;
   bool godMode;
+  bool nightMode;
   //std::map<std::string, int> soundIndex;
 
   void draw() const;

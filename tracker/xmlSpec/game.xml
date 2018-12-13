@@ -18,9 +18,9 @@
 </view>
 
 <hud>
-  <loc x="10" y="10"/>
+  <loc x="530" y="60"/>
   <width>250</width>
-  <height>200</height>
+  <height>210</height>
 </hud>
 
 <world>
@@ -75,7 +75,7 @@
 
 <blackHeart>
   <file>assets/blackHeart.png</file>
-  <startLoc x="350" y="400"/>
+  <startLoc x="900" y="100"/>
   <frames>33</frames>
   <frameInterval>100</frameInterval>
   <speedX>180</speedX>
@@ -89,7 +89,7 @@
 
 <rainbowHeart>
   <file>assets/rainbowHeart.png</file>
-  <startLoc x="350" y="400"/>
+  <startLoc x="900" y="100"/>
   <frames>33</frames>
   <frameInterval>100</frameInterval>
   <speedX>180</speedX>
@@ -103,7 +103,7 @@
 
 <pinkHeart>
   <file>assets/pinkHeart.png</file>
-  <startLoc x="350" y="400"/>
+  <startLoc x="900" y="100"/>
   <frames>33</frames>
   <frameInterval>100</frameInterval>
   <speedX>180</speedX>
@@ -134,7 +134,7 @@
   <speedY>0</speedY>
   <bullet>arrow</bullet>
   <transparency>false</transparency>
-  <lives>15</lives>
+  <lives>3</lives>
 </bikerSprite>
 
 <leftbikerSprite>
