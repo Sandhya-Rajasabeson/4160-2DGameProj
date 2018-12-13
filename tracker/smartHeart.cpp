@@ -87,7 +87,7 @@ void SmartHeart::update(Uint32 ticks) {
     }
   }
 
-  if(getY() > 460 && color == "blackHeart"){ //lower than bridge
+  if(getY() > 600 && color == "blackHeart"){ //lower than bridge
     setVelocityY(-1*getVelocityY());
   }
 

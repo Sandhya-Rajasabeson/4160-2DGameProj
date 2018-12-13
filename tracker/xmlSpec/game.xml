@@ -134,7 +134,7 @@
   <speedY>0</speedY>
   <bullet>arrow</bullet>
   <transparency>false</transparency>
-  <lives>1</lives>
+  <lives>15</lives>
 </bikerSprite>
 
 <leftbikerSprite>
@@ -158,5 +158,24 @@
   <transparency>false</transparency>
   <strategy>rectangular</strategy>
 </arrow>
+
+<numberOfLights>8</numberOfLights>
+<lightSpec lightX1="85" lightY1="450" lightZ1="1" />
+<lightSpec lightX2="350" lightY2="450" lightZ2="1" />
+<lightSpec lightX3="615" lightY3="450" lightZ3="1" />
+<lightSpec lightX4="880" lightY4="450" lightZ4="1" />
+<lightSpec lightX5="1145" lightY5="450" lightZ5="1" />
+<lightSpec lightX6="1410" lightY6="450" lightZ6="1" />
+<lightSpec lightX7="1675" lightY7="450" lightZ7="1" />
+<lightSpec lightX8="1950" lightY8="450" lightZ8="1" />
+
+<!-- larger noneffectiveLighting the smaller the radius of the light -->
+<noneffectiveLighting>1000000000</noneffectiveLighting>
+<ambientLighting>1</ambientLighting>
+<brightness>900000</brightness>
+<diffuseGrid>
+   <x>1</x>
+   <y>10</y>
+</diffuseGrid>
 
 </GameData>

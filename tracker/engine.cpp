@@ -41,6 +41,7 @@ Engine::Engine() :
   city4("city4", Gamedata::getInstance().getXmlInt("city4/factor") ),
   player(new Player("bikerSprite")),
   viewport( Viewport::getInstance() ),
+  lights(),
   sprites(),
   cStrategy(new MidPointCollisionStrategy()),
   makeVideo( false ),
@@ -79,9 +80,32 @@ void Engine::draw() const {
   city3.draw();
   city2.draw();
   city1.draw();
-
   player->draw();
+  lights.draw();
   bridge.draw();
+
+  if(player->getLives() > 0){
+    std::stringstream stream;
+    stream << "Lives";
+    IoMod::getInstance().
+      writeText(stream.str(), 15, 15);
+    stream.clear();
+    stream.str("");
+    for(int i = 0; i < player->getLives(); i++)
+      stream << "<3  ";
+    IoMod::getInstance().
+      writeText(stream.str(), 85, 15);
+
+    std::stringstream strm;
+    strm << "Points";
+    IoMod::getInstance().
+      writeText(strm.str(), 15, 45);
+    strm.clear();
+    strm.str("");
+    strm << player->getPoints();
+    IoMod::getInstance().
+      writeText(strm.str(), 95, 45);
+  }
 
   for(unsigned int i = 0; i < sprites.size(); i++){
     sprites[i]->draw();
@@ -114,8 +138,9 @@ void Engine::update(Uint32 ticks) {
   city3.update();
   city2.update();
   city1.update();
-  bridge.update();
   player->update(ticks);
+  lights.update();
+  bridge.update();
 
   for(auto& sp : sprites){
 

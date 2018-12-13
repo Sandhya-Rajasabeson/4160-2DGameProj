@@ -176,7 +176,7 @@ void Player::draw() const{
     bullets->draw();
   }
 
-  if(lives > 0){
+  /*if(lives > 0){
     std::stringstream stream;
     stream << "Lives";
     IoMod::getInstance().
@@ -196,8 +196,8 @@ void Player::draw() const{
     strm.str("");
     strm << points;
     IoMod::getInstance().
-      writeText(strm.str(), 85, 45);
-  }
+      writeText(strm.str(), 95, 45);
+  }*/
 
 
 }

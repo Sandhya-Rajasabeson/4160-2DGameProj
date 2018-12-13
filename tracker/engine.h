@@ -7,6 +7,7 @@
 #include "player.h"
 #include "collisionStrategy.h"
 #include "sound.h"
+#include "lights.h"
 
 class Engine {
 public:
@@ -32,6 +33,7 @@ private:
   Player* player;
   //std::vector<World> background;
   Viewport& viewport;
+  Lights lights;
 
 
   std::vector<Drawable*> sprites; //0 is player NEED TO SPLIT. NEEDS to be Drawable for collision to work

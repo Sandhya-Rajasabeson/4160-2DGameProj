@@ -32,7 +32,11 @@ OBJS = \
 	arrow.o \
 	bulletPool.o \
 	sound.o \
-	main.o
+	light.o \
+	lights.o \
+	triple.o \
+	main.o \
+
 EXEC = run
 
 %.o: %.cpp %.h
