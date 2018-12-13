@@ -4,22 +4,19 @@ Course: 4160
 
 Clemson Email Address: srajasa@g.clemson.edu
 
-Project no: 5
+Project no: 6 (final)
 
-Project due date: December 7 2018
+Project due date: December 12 2018 10pm
 
-Project description: player must shoot black hearts that if they collide with they die. there will be a cloud that emits
-different colored hearts, some will give faster ammo, some will give more lives, some will make them bigger or go faster
-. the player will start with 3 lives and dies when they hit a black heart.
+Project description: Player shoots black hearts, gets points with pink hears and extra lives with rainbow
+hearts. Game has a night mode with hidden hearts. Godmode with no death.
 I created the player and bullet sprite from scratch and I found gifs of the hearts online on this profile
 on giphy (https://giphy.com/simonfalk/) and I converted them into sprite sheets using this online
 gif to sprite sheet maker (https://ezgif.com/gif-to-sprite)
 
 The easiest part of this project:
-shooting
+lighting
 
 Problems that I had in completing this project:
-Did not realize that if you exit the window during an explosion you will have memory leaks,
-i spent five hours trying to fix memory leaks that just weren't there. but i learnt a Lot more about
-polymorphism, inheritance and how it relates to virtual vs non virtual destructors so that was honestly
-amazing.
+restart issues that showed some issues with my constructors that were a bit
+hard to find
